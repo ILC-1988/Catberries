@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         coordinator = ProductCoordinator()
-        coordinator?.setRootViewController(CollectionViewController())
+        coordinator?.setRootViewController(ProductViewController())
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = coordinator?.rootViewController
         window?.makeKeyAndVisible()
