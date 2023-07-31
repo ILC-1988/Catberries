@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProductCoordinator {
+final class SceneCoordinator {
     var rootViewController: UIViewController?
     
     func setRootViewController(_ viewController: UIViewController) {

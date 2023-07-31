@@ -8,41 +8,71 @@
 import UIKit
 
 extension ProductViewController {
-    
-    func addCollectionView() {
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
-        
-        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        collectionView.dataSource = self
+
+    func setupView() {
+
+        view.backgroundColor = .white
+        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
-        collectionView.backgroundColor = .white
-        
+        collectionView.dataSource = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
+
+        searchBar.delegate = self
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(searchBar)
         
-        view.setupConstraints(for: collectionView, in: view, with: UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8))
+        let toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(toolbar)
+        
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: searchBar.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+      
+        NSLayoutConstraint.activate([
+            toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        toolbar.heightAnchor.constraint(equalToConstant: 10).isActive = true
 
     }
-    
+
 }
 
 // MARK: - UICollectionViewDataSource
 extension ProductViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if isSearching {
+            return viewModel.filteredItems.count
+        } else {
+            return viewModel.items.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-        cell.backgroundColor = .blue
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ProductCell
+        let item: Item
+        if isSearching {
+            item = viewModel.filteredItems[indexPath.row]
+        } else {
+            item = viewModel.items[indexPath.row]
+        }
+        cell.textLabel.text = item.name
         return cell
     }
     
@@ -78,4 +108,27 @@ extension ProductViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         cellSpacing
     }
+}
+
+// MARK: - UISearchBarDelegate
+extension ProductViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            isSearching = false
+            collectionView.reloadData()
+        } else {
+            isSearching = true
+            viewModel.filterItems(with: searchText)
+            collectionView.reloadData()
+        }
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        isSearching = false
+        collectionView.reloadData()
+    }
+    
 }
