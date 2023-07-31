@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0343810545854213F611D7CD /* Pods_Catberries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256DE03019D6FC83928E3ABF /* Pods_Catberries.framework */; };
 		6164FF2C2A75A70500AA770E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164FF2B2A75A70500AA770E /* AppDelegate.swift */; };
 		6164FF2F2A75B2CF00AA770E /* ProductViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164FF2E2A75B2CE00AA770E /* ProductViewController+Extension.swift */; };
 		6164FF322A75B69700AA770E /* UIView+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164FF312A75B69700AA770E /* UIView+Extension .swift */; };
@@ -30,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E6F2C321CBFD32FE79DA052 /* Pods-Catberries.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catberries.debug.xcconfig"; path = "Target Support Files/Pods-Catberries/Pods-Catberries.debug.xcconfig"; sourceTree = "<group>"; };
+		256DE03019D6FC83928E3ABF /* Pods_Catberries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catberries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		615138472A7857A3000077EA /* Catberries copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Catberries copy-Info.plist"; path = "/Users/ilc/Учеба/TMS/Диплом/Catberries/Catberries copy-Info.plist"; sourceTree = "<absolute>"; };
 		6164FF2B2A75A70500AA770E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6164FF2E2A75B2CE00AA770E /* ProductViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductViewController+Extension.swift"; sourceTree = "<group>"; };
 		6164FF312A75B69700AA770E /* UIView+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension .swift"; sourceTree = "<group>"; };
@@ -52,6 +56,7 @@
 		61EDF1802A77227F00E90F80 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
 		61EDF1822A7722BA00E90F80 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		61EDF1842A77340100E90F80 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		8E02A8DD9A5410AEEE847851 /* Pods-Catberries.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catberries.release.xcconfig"; path = "Target Support Files/Pods-Catberries/Pods-Catberries.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +64,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0343810545854213F611D7CD /* Pods_Catberries.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4174A82AC6DA985A860800D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				256DE03019D6FC83928E3ABF /* Pods_Catberries.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4EA9EB656F97EFA106C1D5EF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1E6F2C321CBFD32FE79DA052 /* Pods-Catberries.debug.xcconfig */,
+				8E02A8DD9A5410AEEE847851 /* Pods-Catberries.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6164FF222A7595CB00AA770E /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +119,9 @@
 			children = (
 				6186C0D22A69B3CA0049D959 /* Catberries */,
 				6186C0D12A69B3CA0049D959 /* Products */,
+				4EA9EB656F97EFA106C1D5EF /* Pods */,
+				4174A82AC6DA985A860800D6 /* Frameworks */,
+				615138472A7857A3000077EA /* Catberries copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,9 +190,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6186C0E42A69B3CB0049D959 /* Build configuration list for PBXNativeTarget "Catberries" */;
 			buildPhases = (
+				448F6740301D5A5D45C10FD7 /* [CP] Check Pods Manifest.lock */,
 				6186C0CC2A69B3CA0049D959 /* Sources */,
 				6186C0CD2A69B3CA0049D959 /* Frameworks */,
 				6186C0CE2A69B3CA0049D959 /* Resources */,
+				615138272A7856D8000077EA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -221,6 +249,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		448F6740301D5A5D45C10FD7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Catberries-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		615138272A7856D8000077EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SWIFT_LINT=/usr/local/bin/swiftlint\nif [[ -e \"${SWIFT_LINT}\" ]]; then\necho \"[I] Found SwiftLint at ${SWIFT_LINT}\"\nelse\necho \"[!] Local SwiftLint not found at ${SWIFT_LINT}\"\nexport SWIFT_LINT=${PWD}/Pods/SwiftLint/swiftlint\necho \"[I] Try to using SwiftLint from cocoapods at ${SWIFT_LINT}\"\nfi\nif [[ ! -e \"${SWIFT_LINT}\" ]]; then\necho \"[!] SwifLint is not installed.\"\necho \"[!] Expected location is '${SWIFT_LINT}'\"\necho \"[!] Please install it. eg. 'brew install swiftlint'\"\nexit 1\nfi\necho \"[I] SwiftLint version: $(${SWIFT_LINT} version)\"\ngit ls-files --other --modified --exclude-standard -- \"*.swift\" | while read filename; do\n$SWIFT_LINT lint --path \"$filename\";\n$SWIFT_LINT autocorrect --path \"$filename\";\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6186C0CC2A69B3CA0049D959 /* Sources */ = {
@@ -378,6 +448,7 @@
 		};
 		6186C0E52A69B3CB0049D959 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E6F2C321CBFD32FE79DA052 /* Pods-Catberries.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -405,6 +476,7 @@
 		};
 		6186C0E62A69B3CB0049D959 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E02A8DD9A5410AEEE847851 /* Pods-Catberries.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

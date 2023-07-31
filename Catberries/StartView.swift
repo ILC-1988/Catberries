@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,15 +15,15 @@ class TabBarController: UITabBarController {
         let firstViewController = ProductViewController()
         let secondViewController = ProductInfoViewController()
         let thirdViewController = BasketViewController()
-
+        
         let firstCoordinator = ProductCoordinator(navigationController: UINavigationController(), viewModel: firstViewController.viewModel)
         let secondCoordinator = ProductInfoCoordinator(navigationController: UINavigationController(), viewModel: secondViewController.viewModel)
         let thirdCoordinator = BasketCoordinator(navigationController: UINavigationController(), viewModel: thirdViewController.viewModel)
         
         let viewControllers = [firstViewController, secondViewController, thirdViewController]
-
+        
         setViewControllers(viewControllers, animated: false)
-
+        
         if let items = tabBar.items {
             for (index, item) in items.enumerated() {
                 switch index {

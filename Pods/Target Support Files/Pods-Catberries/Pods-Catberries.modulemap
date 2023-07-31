@@ -1,0 +1,6 @@
+framework module Pods_Catberries {
+  umbrella header "Pods-Catberries-umbrella.h"
+
+  export *
+  module * { export * }
+}
