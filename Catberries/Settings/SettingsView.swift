@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class ProductInfoViewController: UIViewController {
-    
-    let viewModel = ProductInfoViewModel()
-    
+final class SettingsViewController: UIViewController {
+
+    let viewModel = SettingsViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .lightText
-        
+
     }
 
 }

@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ProductInfoCoordinator: Coordinator {
-    
-    let viewModel: ProductInfoViewModel
-    
-    init(navigationController: UINavigationController, viewModel: ProductInfoViewModel) {
+class SettingsCoordinator: Coordinator {
+
+    let viewModel: SettingsViewModel
+
+    init(navigationController: UINavigationController, viewModel: SettingsViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(navigationController: navigationController)
     }
 

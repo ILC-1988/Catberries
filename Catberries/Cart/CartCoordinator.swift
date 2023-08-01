@@ -7,13 +7,13 @@
 
 import UIKit
 
-class BasketCoordinator: Coordinator {
-    
-    let viewModel: BasketViewModel
-    
-    init(navigationController: UINavigationController, viewModel: BasketViewModel) {
+class CartCoordinator: Coordinator {
+
+    let viewModel: CartViewModel
+
+    init(navigationController: UINavigationController, viewModel: CartViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(navigationController: navigationController)
     }
 

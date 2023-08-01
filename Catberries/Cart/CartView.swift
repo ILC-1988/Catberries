@@ -7,15 +7,13 @@
 
 import UIKit
 
-final class BasketViewController: UIViewController {
-    
-    let viewModel = BasketViewModel()
-    
+final class CartViewController: UIViewController {
+
+    let viewModel = CartViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         view.backgroundColor = .lightGray
-        
     }
 
 }
