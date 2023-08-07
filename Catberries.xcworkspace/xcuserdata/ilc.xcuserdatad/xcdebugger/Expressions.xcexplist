@@ -3,6 +3,20 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ProductViewModel.updateData(with:filteredProductsByCategory:isSearching:):ProductViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "productsByCategory">
+            </PersistentString>
+            <PersistentString
+               value = "collectionDataSource.dataClosure">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProductViewModel.searchProductsByValue(_:):ProductViewModel.swift">
+      </ContextState>
+      <ContextState
          contextName = "APIClient.fetchProductsFromAPI(completion:):APIServise.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,19 +25,78 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CollectionDataSource.collectionView(_:cellForItemAt:):CollectionDataSource.swift">
+         contextName = "APIClient.makeUrl(_:):APIServise.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "baseUrl + method">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ProductCell.loadImage(from:):ProductCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "url">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProductViewController.numberOfSections(in:):ProductViewController+Extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel.filteredproductsByCategory">
+            </PersistentString>
+            <PersistentString
+               value = "viewModel.productsByCategory">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CollectionDataSource.fetchProductsForCategories(categories:completion:):CollectionDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "productsByCategory">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "CollectionDataSource.numberOfSections(in:):CollectionDataSource.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "productsByCategory">
+            </PersistentString>
             <PersistentString
                value = "productsByCategory.count">
             </PersistentString>
             <PersistentString
                value = "filteredProductsByCategory">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in APIClient.fetchProductsForCategories(categories:completion:):APIServise.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "productsByCategory">
+               value = "url">
+            </PersistentString>
+            <PersistentString
+               value = "&quot;products/category/\(category)&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ProductViewModel.updateDataClosure():ProductViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self?.collectionDataSource">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProductViewController.collectionView(_:numberOfItemsInSection:):ProductViewController+Extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel.filteredproductsByCategory">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -36,21 +109,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ProductViewModel.updateData(with:filteredProductsByCategory:isSearching:):ProductViewModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "collectionDataSource.dataClosure">
-            </PersistentString>
-            <PersistentString
-               value = "productsByCategory">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "APIClient.fetchProductsForCategories(categories:completion:):APIServise.swift">
       </ContextState>
       <ContextState
-         contextName = "APIClient.makeUrl(_:):APIServise.swift">
+         contextName = "CollectionDataSource.collectionView(_:cellForItemAt:):CollectionDataSource.swift">
          <PersistentStrings>
             <PersistentString
-               value = "baseUrl + method">
+               value = "item.title">
+            </PersistentString>
+            <PersistentString
+               value = "cell.descriptionLabel.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -79,45 +147,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ProductViewModel.searchProductsByValue(_:):ProductViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in APIClient.fetchProductsForCategories(categories:completion:):APIServise.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "url">
-            </PersistentString>
-            <PersistentString
-               value = "&quot;products/category/\(category)&quot;">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ProductViewController.collectionView(_:numberOfItemsInSection:):ProductViewController+Extension.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "viewModel.filteredproductsByCategory">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in closure #1 in ProductViewModel.attach():ProductViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ProductViewModel.updateDataClosure():ProductViewModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self?.collectionDataSource">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in ProductCell.loadImage(from:):ProductCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "url">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "CollectionDataSource.productsByCategory.modify:CollectionDataSource.swift">
@@ -126,32 +156,13 @@
          contextName = "closure #1 in closure #1 in ProductViewModel.fetchProductsForCategories(categories:completion:):ProductViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "AllProduct">
-            </PersistentString>
-            <PersistentString
                value = "products">
             </PersistentString>
             <PersistentString
                value = "productsByCategory">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "CollectionDataSource.fetchProductsForCategories(categories:completion:):CollectionDataSource.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "productsByCategory">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ProductViewController.numberOfSections(in:):ProductViewController+Extension.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "viewModel.filteredproductsByCategory">
-            </PersistentString>
-            <PersistentString
-               value = "viewModel.productsByCategory">
+               value = "AllProduct">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

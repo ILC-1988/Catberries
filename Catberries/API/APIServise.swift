@@ -31,7 +31,8 @@ class APIClient {
             case .success(let data):
                 do {
                     let categories = try JSONDecoder().decode([String].self, from: data)
-                    self.fetchProductsForCategories(categories: categories, completion: completion)
+                    let sortedСategories = categories.sorted()
+                    self.fetchProductsForCategories(categories: sortedСategories, completion: completion)
                 } catch {
                     print("Ошибка декодирования данных категорий: \(error)")
                     completion([:])

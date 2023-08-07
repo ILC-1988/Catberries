@@ -14,8 +14,10 @@ class HeaderView: UICollectionReusableView {
         titleLabel.textAlignment = .center
         titleLabel.textColor = .black
         titleLabel.frame = self.bounds
+        titleLabel.font = UIFont(name: "Marker Felt Thin", size: 18)
         addSubview(titleLabel)
-        self.backgroundColor = .systemMint
+        //self.backgroundColor = .clear
+        self.setElementAppearance()
     }
 
     required init?(coder aDecoder: NSCoder) {
