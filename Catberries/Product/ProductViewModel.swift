@@ -5,60 +5,41 @@
 //  Created by Илья Черницкий on 30.07.23.
 //
 
-struct Item {
-    let name: String
-}
+import Foundation
+import UIKit
 
-class ProductViewModel {
-    var items: [Item] = [
-        Item(name: "Item 1"),
-        Item(name: "Item 2"),
-        Item(name: "Item 3"),
-        Item(name: "Item 4"),
-        Item(name: "Item 5"),
-        Item(name: "Item 6"),
-        Item(name: "Item 7"),
-        Item(name: "Item 8"),
-        Item(name: "Item 9"),
-        Item(name: "Item 10"),
-        Item(name: "Item 11"),
-        Item(name: "Item 12"),
-        Item(name: "Item 13"),
-        Item(name: "Item 14"),
-        Item(name: "Item 1"),
-        Item(name: "Item 2"),
-        Item(name: "Item 3"),
-        Item(name: "Item 4"),
-        Item(name: "Item 5"),
-        Item(name: "Item 6"),
-        Item(name: "Item 7"),
-        Item(name: "Item 8"),
-        Item(name: "Item 9"),
-        Item(name: "Item 10"),
-        Item(name: "Item 11"),
-        Item(name: "Item 12"),
-        Item(name: "Item 13"),
-        Item(name: "Item 14"),
-        Item(name: "Item 1"),
-        Item(name: "Item 2"),
-        Item(name: "Item 3"),
-        Item(name: "Item 4"),
-        Item(name: "Item 5"),
-        Item(name: "Item 6"),
-        Item(name: "Item 7"),
-        Item(name: "Item 8"),
-        Item(name: "Item 9"),
-        Item(name: "Item 10"),
-        Item(name: "Item 11"),
-        Item(name: "Item 12"),
-        Item(name: "Item 13"),
-        Item(name: "Item 14")
-    ]
+class ProductViewModel: NSObject {
     
-    var filteredItems: [Item] = []
+    let collectionDataSource = CollectionDataSource()
+    var collectionView: UICollectionView?
+    private let apiClient = APIClient()
+    var filteredProductsByCategory: [String: [Product]] = [:]
+    var productsByCategory: [String: [Product]] = [:]
+    var isSearching: Bool = false
+    var dataClosure: (([String: [Product]], [String: [Product]], Bool) -> Void)?
     
-    func filterItems(with searchText: String) {
-        filteredItems = items.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+    func updateData(with newData: [String: [Product]], filteredProductsByCategory filterData: [String: [Product]], isSearching newIsSearching: Bool) {
+        DispatchQueue.main.async {
+            self.filteredProductsByCategory = filterData
+            self.productsByCategory = newData
+            self.isSearching = newIsSearching
+            self.collectionView?.reloadData()
+            
+            self.collectionDataSource.productsByCategory = self.productsByCategory
+            self.collectionDataSource.filteredProductsByCategory = self.filteredProductsByCategory
+            self.collectionDataSource.isSearching = self.isSearching
+            
+            self.dataClosure?(self.productsByCategory, self.filteredProductsByCategory, self.isSearching)
+        }
+    }
+    
+    func attach() {
+        apiClient.fetchProductsFromAPI { [weak self] productsByCategory in
+            DispatchQueue.main.async {
+                self?.productsByCategory = productsByCategory
+                self?.collectionDataSource.productsByCategory = productsByCategory
+                self?.dataClosure?(productsByCategory, [:], false)
+            }
+        }
     }
 }
-

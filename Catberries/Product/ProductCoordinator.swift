@@ -8,14 +8,11 @@
 import UIKit
 
 class ProductCoordinator: Coordinator {
-    
+
     let viewModel: ProductViewModel
-    
+
     init(navigationController: UINavigationController, viewModel: ProductViewModel) {
         self.viewModel = viewModel
-        
         super.init(navigationController: navigationController)
     }
-
 }
-

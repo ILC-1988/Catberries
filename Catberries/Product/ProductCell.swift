@@ -29,7 +29,7 @@ final class ProductCell: UICollectionViewCell {
             textLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
 
-        self.contentView.layer.cornerRadius = 5
+        self.contentView.layer.cornerRadius = 10
         self.contentView.layer.masksToBounds = true
     }
 

@@ -6,6 +6,7 @@ target 'Catberries' do
   use_frameworks!
 
   # Pods for Catberries
-pod 'SwiftLint'
+	pod 'SwiftLint'
+	pod 'Alamofire'
 
 end
