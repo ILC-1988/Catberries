@@ -87,7 +87,12 @@ class CollectionDataSource: NSObject, UICollectionViewDataSource {
             }
         }
 
-        cell.textLabel.text = item?.title
+        cell.descriptionLabel.text = item?.title
+        
+        if let iconUrl = item?.images[0] {
+            cell.loadImage(from: iconUrl)
+        }
+
 
         return cell
     }
@@ -100,8 +105,6 @@ class CollectionDataSource: NSObject, UICollectionViewDataSource {
                                                           for: indexPath) as? HeaderView else {
             return UICollectionReusableView()
         }
-
-        headerView.backgroundColor = .darkGray
 
         let categories: [String]
         if isSearching {

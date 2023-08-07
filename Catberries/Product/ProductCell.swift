@@ -5,35 +5,58 @@
 //  Created by Илья Черницкий on 20.07.23.
 //
 
+import Alamofire
 import UIKit
 
 final class ProductCell: UICollectionViewCell {
-    let textLabel = UILabel()
+    let descriptionLabel = UILabel()
+    let imageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .lightGray
-        textLabel.textAlignment = .center
-        textLabel.font = UIFont.systemFont(ofSize: 14)
-        addSubview(textLabel)
+        self.backgroundColor = .systemBackground
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
+        addSubview(descriptionLabel)
+        addSubview(imageView)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: topAnchor),
-            textLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            textLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            textLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor),
+
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
 
-        self.contentView.layer.cornerRadius = 10
-        self.contentView.layer.masksToBounds = true
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func loadImage(from urlString: String) {
+        if let url = URL(string: urlString) {
+            AF.request(url).responseData { response in
+                if let data = response.data, let image = UIImage(data: data) {
+                     DispatchQueue.main.async {
+                         self.imageView.image = image
+                     }
+                }
+            }
+        }
+    }
+
 }

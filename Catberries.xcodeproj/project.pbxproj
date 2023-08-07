@@ -147,10 +147,10 @@
 		6186C0D22A69B3CA0049D959 /* Catberries */ = {
 			isa = PBXGroup;
 			children = (
+				61CA85302A81365B00B0E064 /* API */,
 				61EDF1702A771EA200E90F80 /* Bindable.swift */,
 				61EDF1842A77340100E90F80 /* StartView.swift */,
 				61EDF16C2A771BCD00E90F80 /* Coordinator.swift */,
-				61C745E22A803375006AEA8D /* APIServise.swift */,
 				6164FF222A7595CB00AA770E /* Delegate */,
 				6164FF2D2A75B2BA00AA770E /* Extensions */,
 				61EDF1692A770FC100E90F80 /* Product */,
@@ -164,6 +164,15 @@
 			path = Catberries;
 			sourceTree = "<group>";
 		};
+		61CA85302A81365B00B0E064 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				61C64A3E2A79A75C00C18E20 /* APIClient.swift */,
+				61C745E22A803375006AEA8D /* APIServise.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		61EDF1692A770FC100E90F80 /* Product */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +182,6 @@
 				6186C0E72A69B6930049D959 /* ProductView.swift */,
 				61EDF1672A76FEEC00E90F80 /* ProductViewModel.swift */,
 				61EDF16E2A771D7E00E90F80 /* ProductCoordinator.swift */,
-				61C64A3E2A79A75C00C18E20 /* APIClient.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";

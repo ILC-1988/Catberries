@@ -10,13 +10,13 @@ import UIKit
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ProductViewModel: UICollectionViewDelegateFlowLayout {
 
-    private var columnNumber: CGFloat { 5 }
+    private var columnNumber: CGFloat { 3 }
     private var sectionInsets: UIEdgeInsets { .zero }
     private var cellSpacing: CGFloat { 4 }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ProductCell {
-            cellTapped(cell.textLabel, indexPath: indexPath)
+            cellTapped(cell.descriptionLabel, indexPath: indexPath)
         }
         print("Selected item at index: \(indexPath.item)")
     }
@@ -65,7 +65,7 @@ extension ProductViewModel: UICollectionViewDelegateFlowLayout {
 
         collectionView.collectionViewLayout.invalidateLayout()
 
-        return CGSize(width: collectionView.frame.width, height: 24)
+        return CGSize(width: collectionView.frame.width, height: 32)
     }
 }
 

@@ -15,6 +15,7 @@ class HeaderView: UICollectionReusableView {
         titleLabel.textColor = .white
         titleLabel.frame = self.bounds
         addSubview(titleLabel)
+        self.backgroundColor = .systemMint
     }
 
     required init?(coder aDecoder: NSCoder) {
