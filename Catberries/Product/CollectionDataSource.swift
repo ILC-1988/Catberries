@@ -88,11 +88,10 @@ class CollectionDataSource: NSObject, UICollectionViewDataSource {
         }
 
         cell.descriptionLabel.text = item?.title
-        
+        cell.priceLabel.text = item?.price.format()
         if let iconUrl = item?.images[0] {
             cell.loadImage(from: iconUrl)
         }
-
 
         return cell
     }

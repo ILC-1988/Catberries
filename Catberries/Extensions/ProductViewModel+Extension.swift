@@ -10,9 +10,9 @@ import UIKit
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ProductViewModel: UICollectionViewDelegateFlowLayout {
 
-    private var columnNumber: CGFloat { 3 }
+    private var columnNumber: CGFloat { 2 }
     private var sectionInsets: UIEdgeInsets { .zero }
-    private var cellSpacing: CGFloat { 4 }
+    private var cellSpacing: CGFloat { 8 }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ProductCell {

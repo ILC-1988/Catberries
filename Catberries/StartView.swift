@@ -31,6 +31,7 @@ class TabBarController: UITabBarController {
         let viewControllers = [firstViewController, secondViewController, thirdViewController]
 
         setViewControllers(viewControllers, animated: true)
+        tabBar.tintColor = UIColor.purple
 
         if let items = tabBar.items {
             for (index, item) in items.enumerated() {

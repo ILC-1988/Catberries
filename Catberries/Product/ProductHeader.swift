@@ -12,7 +12,7 @@ class HeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel.textAlignment = .center
-        titleLabel.textColor = .white
+        titleLabel.textColor = .black
         titleLabel.frame = self.bounds
         addSubview(titleLabel)
         self.backgroundColor = .systemMint

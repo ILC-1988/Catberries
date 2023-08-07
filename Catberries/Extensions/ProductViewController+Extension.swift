@@ -17,23 +17,29 @@ extension ProductViewController {
         layout.minimumLineSpacing = 10
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         view.addSubview(collectionView)
-        
-        let updateCollectionViewClosure: ((UICollectionView) -> Void) = { [weak self] collectionView in
-            self?.viewModel.collectionView = collectionView
-        }
-        updateCollectionViewClosure(collectionView)
 
-return collectionView
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handlePullToRefresh), for: .primaryActionTriggered)
+        collectionView.refreshControl = refreshControl
+
+        return collectionView
+    }
+
+    @objc
+    private func handlePullToRefresh(_ sender: UIRefreshControl) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            sender.endRefreshing()
+            self.collectionView.backgroundColor = .white
+            self.viewModel.attach()
+        }
     }
 
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemPurple
         collectionView.dataSource = collectionDataSource
         collectionView.delegate = viewModel
         collectionView.register(ProductCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderViewIdentifier")
-
-
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
 
@@ -66,6 +72,6 @@ return collectionView
             toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
-        toolbar.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        toolbar.heightAnchor.constraint(equalToConstant: 5).isActive = true
     }
 }
