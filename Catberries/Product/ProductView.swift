@@ -21,6 +21,12 @@ class ProductViewController: UIViewController {
 
         viewModel.dataClosure = { [weak self] productsByCategory, filteredProductsByCategory, isSearching in
             DispatchQueue.main.async {
+                self?.viewModel.filteredProductsByCategory = filteredProductsByCategory
+                self?.viewModel.productsByCategory = productsByCategory
+                self?.viewModel.isSearching = isSearching
+                self?.viewModel.collectionDataSource.productsByCategory = productsByCategory
+                self?.viewModel.collectionDataSource.filteredProductsByCategory = filteredProductsByCategory
+                self?.viewModel.collectionDataSource.isSearching = isSearching
                 self?.collectionView.reloadData()
             }
         }
@@ -29,7 +35,6 @@ class ProductViewController: UIViewController {
         viewModel.collectionView = collectionView
          viewModel.attach()
     }
-
 
     override func willTransition(to newCollection: UITraitCollection,
                                  with coordinator: UIViewControllerTransitionCoordinator) {

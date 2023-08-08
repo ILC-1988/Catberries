@@ -74,20 +74,17 @@ extension ProductViewModel: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.attach()
+            self.dataClosure?(productsByCategory, [:], false)
         } else {
             let filteredProductsByCategory = collectionDataSource.searchProductsByValue(searchText)
-            self.updateData(with: productsByCategory,
-                             filteredProductsByCategory: filteredProductsByCategory,
-                             isSearching: true)
-            self.collectionView?.reloadData()
+            self.dataClosure?(productsByCategory, filteredProductsByCategory, true)
         }
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        self.attach()
+        self.dataClosure?(productsByCategory, [:], false)
     }
 
 }
