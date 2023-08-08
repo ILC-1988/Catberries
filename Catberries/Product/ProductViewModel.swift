@@ -8,14 +8,10 @@
 import Foundation
 import UIKit
 
-class ProductViewModel: NSObject {
+final class ProductViewModel: NSObject {
 
     let collectionDataSource = CollectionDataSource()
-    var collectionView: UICollectionView?
     private let apiClient = APIClient()
-    var filteredProductsByCategory: [String: [Product]] = [:]
-    var productsByCategory: [String: [Product]] = [:]
-    var isSearching: Bool = false
     var dataClosure: (([String: [Product]], [String: [Product]], Bool) -> Void)?
 
     func attach() {

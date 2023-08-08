@@ -9,19 +9,26 @@ import UIKit
 
 extension ProductViewController {
 
-    func addCollectionView() -> UICollectionView {
+   func makeCollectionView() -> UICollectionView {
+
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        view.addSubview(collectionView)
 
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handlePullToRefresh), for: .primaryActionTriggered)
         collectionView.refreshControl = refreshControl
 
+        collectionView.delegate = viewModel
+        collectionView.dataSource = viewModel.collectionDataSource
+        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: "HeaderViewIdentifier")
+
+        view.addSubview(collectionView)
         return collectionView
     }
 
@@ -29,49 +36,58 @@ extension ProductViewController {
     private func handlePullToRefresh(_ sender: UIRefreshControl) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             sender.endRefreshing()
-            self.collectionView.backgroundColor = .white
             self.viewModel.attach()
         }
     }
 
-    func setupView() {
-        view.backgroundColor = .systemPurple
-        collectionView.dataSource = collectionDataSource
-        collectionView.delegate = viewModel
-        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderViewIdentifier")
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(collectionView)
-
+    func makeSearchBar() -> UISearchBar {
+        let searchBar = UISearchBar()
         searchBar.delegate = viewModel
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(searchBar)
+        return searchBar
+    }
 
+    func makeToolbar() -> UIToolbar {
         let toolbar = UIToolbar()
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(toolbar)
+        return toolbar
+    }
+
+    func setupUI() {
+        view.backgroundColor = .systemPurple
+        setupConstraints()
+    }
+
+    private func setupConstraints() {
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+
+        toolbar.heightAnchor.constraint(equalToConstant: 5).isActive = true
+        searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-
-        NSLayoutConstraint.activate([
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: searchBar.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-
-        searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
-        NSLayoutConstraint.activate([
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
 
-        toolbar.heightAnchor.constraint(equalToConstant: 5).isActive = true
+    func initViewModel() {
+        viewModel.dataClosure = { [weak self] products, filteredProducts, isSearching in
+            DispatchQueue.main.async {
+                self?.viewModel.collectionDataSource.productsByCategory = products
+                self?.viewModel.collectionDataSource.filteredProductsByCategory = filteredProducts
+                self?.viewModel.collectionDataSource.isSearching = isSearching
+                self?.collectionView.reloadData()
+            }
+        }
     }
 }

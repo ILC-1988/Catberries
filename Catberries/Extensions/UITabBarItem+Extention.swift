@@ -12,7 +12,3 @@ extension UITabBarItem: Bindable {
         coordinator.tabBarItemTapped(sender: index)
     }
 }
-
-
-
-

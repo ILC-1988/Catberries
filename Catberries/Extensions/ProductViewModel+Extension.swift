@@ -24,7 +24,7 @@ extension ProductViewModel: UICollectionViewDelegateFlowLayout {
     func cellTapped(_ sender: UILabel, indexPath: IndexPath) {
         UIView.animate(withDuration: 0.3) {
             sender.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            sender.textColor = .yellow
+            sender.textColor = .purple
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
                 sender.transform = CGAffineTransform.identity
@@ -74,17 +74,17 @@ extension ProductViewModel: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.dataClosure?(productsByCategory, [:], false)
+            self.dataClosure?(collectionDataSource.productsByCategory, [:], false)
         } else {
             let filteredProductsByCategory = collectionDataSource.searchProductsByValue(searchText)
-            self.dataClosure?(productsByCategory, filteredProductsByCategory, true)
+            self.dataClosure?(collectionDataSource.productsByCategory, filteredProductsByCategory, true)
         }
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        self.dataClosure?(productsByCategory, [:], false)
+        self.dataClosure?(collectionDataSource.productsByCategory, [:], false)
     }
 
 }
