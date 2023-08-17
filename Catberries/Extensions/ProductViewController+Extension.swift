@@ -47,36 +47,24 @@ extension ProductViewController {
         return searchBar
     }
 
-    func makeToolbar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        view.addSubview(toolbar)
-        return toolbar
-    }
-
     func setupUI() {
         view.backgroundColor = .systemPurple
-        setupConstraints()
+        setConstraints()
     }
 
-    private func setupConstraints() {
+    private func setConstraints() {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-
-        toolbar.heightAnchor.constraint(equalToConstant: 5).isActive = true
-        searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: searchBar.safeAreaLayoutGuide.bottomAnchor),
+            searchBar.heightAnchor.constraint(equalToConstant: 50),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 

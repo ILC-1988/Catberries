@@ -13,6 +13,7 @@ final class ProductViewModel: NSObject {
     let collectionDataSource = CollectionDataSource()
     private let apiClient = APIClient()
     var dataClosure: (([String: [Product]], [String: [Product]], Bool) -> Void)?
+    var didSelectCell: ((_ indexPath: IndexPath) -> Void)?
 
     func attach() {
         apiClient.fetchProductsFromAPI { [weak self] productsByCategory in
@@ -21,4 +22,9 @@ final class ProductViewModel: NSObject {
             }
         }
     }
+
+    func cellSelected(at indexPath: IndexPath) {
+        didSelectCell?(indexPath)
+    }
+
 }

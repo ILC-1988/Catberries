@@ -11,6 +11,13 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTabBar()
+    }
+
+    private func setupTabBar() {
+
+        let customTabBar = CustomTabBar()
+        setValue(customTabBar, forKey: "tabBar")
 
         let firstViewController = ProductViewController()
         let secondViewController = CartViewController()
@@ -19,6 +26,12 @@ class TabBarController: UITabBarController {
         let firstCoordinator = ProductCoordinator(
             navigationController: UINavigationController(),
             viewModel: firstViewController.viewModel)
+
+        firstViewController.viewModel.didSelectCell = { [weak self] indexPath in
+            let destinationViewController = ProductDescriptionViewController()
+            destinationViewController.indexPath = indexPath
+            self?.navigationController?.pushViewController(destinationViewController, animated: true)
+        }
 
         let secondCoordinator = CartCoordinator(
             navigationController: UINavigationController(),
@@ -31,7 +44,6 @@ class TabBarController: UITabBarController {
         let viewControllers = [firstViewController, secondViewController, thirdViewController]
 
         setViewControllers(viewControllers, animated: true)
-        tabBar.tintColor = UIColor.purple
 
         if let items = tabBar.items {
             for (index, item) in items.enumerated() {

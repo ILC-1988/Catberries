@@ -33,6 +33,9 @@ final class ProductCell: UICollectionViewCell {
             brandLabel.font = boldFont
         }
 
+        imageView.layer.borderColor = UIColor.purple.cgColor
+        imageView.layer.borderWidth = 0.5
+
         addSubview(imageView)
         addSubview(priceLabel)
         addSubview(brandLabel)
@@ -44,8 +47,8 @@ final class ProductCell: UICollectionViewCell {
 
         setConstraints()
 
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = imageView.frame.size.width * 0.025
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = imageView.frame.size.width * 0.05
         imageView.clipsToBounds = true
     }
 

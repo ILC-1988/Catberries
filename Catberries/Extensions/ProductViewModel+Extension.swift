@@ -19,6 +19,8 @@ extension ProductViewModel: UICollectionViewDelegateFlowLayout {
             cellTapped(cell.descriptionLabel, indexPath: indexPath)
         }
         print("Selected item at index: \(indexPath.item)")
+
+        cellSelected(at: indexPath)
     }
 
     func cellTapped(_ sender: UILabel, indexPath: IndexPath) {
