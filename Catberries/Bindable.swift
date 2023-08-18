@@ -6,7 +6,7 @@
 //
 
 protocol Bindable {
-    func bind(to coordinator: Coordinator, at index: Int)
+    func bind(to coordinator: SceneCoordinator, at index: Int)
 }
 
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsCoordinator: Coordinator {
+class SettingsCoordinator: SceneCoordinator {
 
     let viewModel: SettingsViewModel
 

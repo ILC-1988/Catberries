@@ -18,38 +18,6 @@
             endingLineNumber = "89"
             landmarkName = "searchBarCancelButtonClicked(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "ADAD3A0E-747D-4685-ABF3-25058D774467 - 4752e9c9a798d891"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Catberries.ProductViewModel.searchBarCancelButtonClicked(__C.UISearchBar) -&gt; ()"
-                  moduleName = "Catberries"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilc/%D0%A3%D1%87%D0%B5%D0%B1%D0%B0/TMS/%D0%94%D0%B8%D0%BF%D0%BB%D0%BE%D0%BC/Catberries/Catberries/Extensions/ProductViewModel+Extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "452">
-               </Location>
-               <Location
-                  uuid = "ADAD3A0E-747D-4685-ABF3-25058D774467 - 4752e9c9a798d891"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Catberries.ProductViewModel.searchBarCancelButtonClicked(__C.UISearchBar) -&gt; ()"
-                  moduleName = "Catberries"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilc/%D0%A3%D1%87%D0%B5%D0%B1%D0%B0/TMS/%D0%94%D0%B8%D0%BF%D0%BB%D0%BE%D0%BC/Catberries/Catberries/Extensions/ProductViewModel+Extension.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "160">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -60,6 +28,22 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Catberries/Product/ProductDescription/ProductDescriptionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC06D47B-1B64-4022-8C43-EB6D7549CEE8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Catberries/ProductDescription/ProductDescriptionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"

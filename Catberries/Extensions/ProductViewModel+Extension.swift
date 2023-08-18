@@ -20,7 +20,7 @@ extension ProductViewModel: UICollectionViewDelegateFlowLayout {
         }
         print("Selected item at index: \(indexPath.item)")
 
-        cellSelected(at: indexPath)
+        didSelectCell(at: indexPath)
     }
 
     func cellTapped(_ sender: UILabel, indexPath: IndexPath) {

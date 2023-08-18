@@ -6,10 +6,10 @@
          contextName = "ProductViewModel.updateData(with:filteredProductsByCategory:isSearching:):ProductViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "productsByCategory">
+               value = "collectionDataSource.dataClosure">
             </PersistentString>
             <PersistentString
-               value = "collectionDataSource.dataClosure">
+               value = "productsByCategory">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -63,13 +63,13 @@
          contextName = "CollectionDataSource.numberOfSections(in:):CollectionDataSource.swift">
          <PersistentStrings>
             <PersistentString
-               value = "productsByCategory">
+               value = "filteredProductsByCategory">
             </PersistentString>
             <PersistentString
                value = "productsByCategory.count">
             </PersistentString>
             <PersistentString
-               value = "filteredProductsByCategory">
+               value = "productsByCategory">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -101,6 +101,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in ProductCoordinator.init(navigationController:viewModel:):ProductCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in CollectionDataSource.loadData(collectionView:):CollectionDataSource.swift">
          <PersistentStrings>
             <PersistentString
@@ -115,10 +123,10 @@
          contextName = "CollectionDataSource.collectionView(_:cellForItemAt:):CollectionDataSource.swift">
          <PersistentStrings>
             <PersistentString
-               value = "item.title">
+               value = "cell.descriptionLabel.text">
             </PersistentString>
             <PersistentString
-               value = "cell.descriptionLabel.text">
+               value = "item.title">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -156,13 +164,13 @@
          contextName = "closure #1 in closure #1 in ProductViewModel.fetchProductsForCategories(categories:completion:):ProductViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "products">
-            </PersistentString>
-            <PersistentString
                value = "productsByCategory">
             </PersistentString>
             <PersistentString
                value = "AllProduct">
+            </PersistentString>
+            <PersistentString
+               value = "products">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

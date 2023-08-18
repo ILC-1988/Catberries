@@ -39,15 +39,15 @@ final class CustomTabBar: UITabBar {
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shapePath()
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.white.cgColor
-        shapeLayer.lineWidth = 1.0
+        shapeLayer.strokeColor = UIColor.purple.cgColor
+        shapeLayer.fillColor = UIColor.systemGray6.cgColor
+        shapeLayer.lineWidth = 2.0
 
         let circleLayer = CAShapeLayer()
         circleLayer.path = circlePath()
-        circleLayer.strokeColor = UIColor.lightGray.cgColor
-        circleLayer.fillColor = UIColor.white.cgColor
-        circleLayer.lineWidth = 1.0
+        circleLayer.strokeColor = UIColor.systemMint.cgColor
+        circleLayer.fillColor = UIColor.systemGray6.cgColor
+        circleLayer.lineWidth = 2.0
 
         if let oldShapeLayer = self.shapeLayer {
             self.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
@@ -61,9 +61,9 @@ final class CustomTabBar: UITabBar {
             self.layer.insertSublayer(circleLayer, at: 1)
         }
 
+        self.tintColor = .purple
         self.shapeLayer = shapeLayer
         self.circleLayer = circleLayer
-        self.tintColor = .purple
     }
 
     override func draw(_ rect: CGRect) {

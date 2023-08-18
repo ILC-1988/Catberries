@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CartCoordinator: Coordinator {
+class CartCoordinator: SceneCoordinator {
 
     let viewModel: CartViewModel
 

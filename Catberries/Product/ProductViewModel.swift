@@ -23,8 +23,7 @@ final class ProductViewModel: NSObject {
         }
     }
 
-    func cellSelected(at indexPath: IndexPath) {
+    func didSelectCell(at indexPath: IndexPath) {
         didSelectCell?(indexPath)
     }
-
 }
