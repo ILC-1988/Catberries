@@ -10,22 +10,26 @@ import UIKit
 class LoginViewController: UIViewController {
 
     var didSendEventClosure: ((LoginViewController.Event) -> Void)?
-    private var userDictionary: [String: String] = [:]
     lazy var loginButton = setupLoginButton("Sing In")
     lazy var createButton = setupLoginButton("Sing up")
     lazy var imageView = setupImage()
-    private var input = false
+    let viewModel = LoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        viewModel.loadCredentials()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setConstraints()
     }
 
     private func setupUI() {
         view.backgroundColor = .systemGray6
         loginButton.addTarget(self, action: #selector(singIn(_:)), for: .touchUpInside)
         createButton.addTarget(self, action: #selector(singUp(_:)), for: .touchUpInside)
-        setConstraints()
     }
 
     func setConstraints() {
@@ -83,15 +87,12 @@ class LoginViewController: UIViewController {
                 if let textFieldsArray = inputAlert.textFields,
                    let login = textFieldsArray[0].text,
                    let password = textFieldsArray[1].text {
-                    var userSingIn = self?.userSingIn(login: login, password: password)
+                    let userSingIn = self?.viewModel.userSingIn(login: login, password: password)
                     if userSingIn == true {
                         self?.didSendEventClosure?(.login)
                         self?.showInputUser(login)
-                        self?.input = true
-                    }
-                    else {
+                    } else {
                         self?.showError(login)
-                        self?.input = false
                     }
                 }
             }
@@ -130,40 +131,33 @@ class LoginViewController: UIViewController {
     @objc
     private func singUp(_ sender: Any) {
         let inputAlert = UIAlertController(title: "Sing up",
-                                           message: "Create new account",
-                                           preferredStyle: .alert)
-
-       inputAlert.addAction(
+                                 message: "Create new account",
+                                 preferredStyle: .alert)
+        inputAlert.addAction(
             UIAlertAction(title: "Cancel",
-                          style: .cancel ))
-
+                   style: .cancel ))
         let okAction = UIAlertAction(
             title: "OK",
-            style: .default ) { _ in
+            style: .default ) { [weak self] _ in
                 if let textFieldsArray = inputAlert.textFields,
                    let login = textFieldsArray[0].text,
                    let password = textFieldsArray[1].text {
-                    self.showNewUser(login)
-                    self.userDictionary[login] = password
+                    self?.showNewUser(login)
+                    self?.viewModel.userDictionary[login] = password
+                    self?.viewModel.saveCredentials()
                 }
-
             }
-
         okAction.isEnabled = false
-
         inputAlert.addAction(okAction)
-
         inputAlert.addTextField { textField in
             textField.placeholder = "Login"
             validate(textField)
         }
-
         inputAlert.addTextField { textField in
             textField.placeholder = "Password"
             textField.isSecureTextEntry = true
             validate(textField)
         }
-
         inputAlert.addTextField { textField in
             textField.placeholder = "Password"
             textField.isSecureTextEntry = true
@@ -192,19 +186,6 @@ class LoginViewController: UIViewController {
                     }
                 }
         }
-
         present(inputAlert, animated: true)
-    }
-
-    private func userSingIn(login: String, password: String) -> Bool {
-
-        var input = false
-        for (user, pass) in userDictionary {
-            if user == login {
-                input = pass == password
-                break
-            }
-        }
-        return input
     }
 }
