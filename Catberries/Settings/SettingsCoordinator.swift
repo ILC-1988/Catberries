@@ -9,12 +9,4 @@ import UIKit
 
 class SettingsCoordinator: SceneCoordinator {
 
-    let viewModel: SettingsViewModel
-
-    init(navigationController: UINavigationController, viewModel: SettingsViewModel) {
-        self.viewModel = viewModel
-
-        super.init(navigationController: navigationController)
-    }
-
 }

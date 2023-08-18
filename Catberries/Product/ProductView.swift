@@ -18,6 +18,5 @@ final class ProductViewController: UIViewController {
         setupUI()
         initViewModel()
         viewModel.attach()
-
     }
 }

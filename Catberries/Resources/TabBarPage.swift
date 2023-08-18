@@ -57,4 +57,15 @@ enum TabBarPage {
             return UIImage(systemName: "gearshape") ?? UIImage()
         }
     }
+
+    func pageTitleValue() -> String {
+        switch self {
+        case .product:
+            return "Product"
+        case .cart:
+            return "Cart"
+        case .settings:
+            return "Settings"
+        }
+    }
 }

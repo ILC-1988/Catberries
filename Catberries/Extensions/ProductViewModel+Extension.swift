@@ -19,8 +19,21 @@ extension ProductViewModel: UICollectionViewDelegateFlowLayout {
             cellTapped(cell.descriptionLabel, indexPath: indexPath)
         }
         print("Selected item at index: \(indexPath.item)")
+        
+        
+        let categories: [String]
+        let category: String
+        
+        categories = Array(self.collectionDataSource.productsByCategory.keys)
+        if !categories.isEmpty {
+            category = categories[indexPath.section]
+            if let product = self.collectionDataSource.productsByCategory[category]?[indexPath.item] as? Product {
+                delegate?.didSelectCell(at: product)
+            }
+        }
 
-        didSelectCell(at: indexPath)
+        
+        
     }
 
     func cellTapped(_ sender: UILabel, indexPath: IndexPath) {

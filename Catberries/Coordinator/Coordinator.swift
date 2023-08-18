@@ -38,5 +38,5 @@ protocol CoordinatorFinishDelegate: class {
 // MARK: - CoordinatorType
 
 enum CoordinatorType {
-    case scene, login, product, description, cart, setting
+    case scene, login, tab, description, cart, setting
 }

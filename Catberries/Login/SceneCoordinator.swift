@@ -47,13 +47,11 @@ extension SceneCoordinator: CoordinatorFinishDelegate {
         childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
 
         switch childCoordinator.type {
-        case .product:
+        case .tab:
             navigationController.viewControllers.removeAll()
-
             showLoginFlow()
         case .login:
             navigationController.viewControllers.removeAll()
-
             showMainFlow()
         default:
             break

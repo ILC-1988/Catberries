@@ -6,10 +6,10 @@
          contextName = "ProductViewModel.updateData(with:filteredProductsByCategory:isSearching:):ProductViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "productsByCategory">
+               value = "collectionDataSource.dataClosure">
             </PersistentString>
             <PersistentString
-               value = "collectionDataSource.dataClosure">
+               value = "productsByCategory">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -71,13 +71,13 @@
          contextName = "CollectionDataSource.numberOfSections(in:):CollectionDataSource.swift">
          <PersistentStrings>
             <PersistentString
-               value = "productsByCategory">
+               value = "productsByCategory.count">
             </PersistentString>
             <PersistentString
                value = "filteredProductsByCategory">
             </PersistentString>
             <PersistentString
-               value = "productsByCategory.count">
+               value = "productsByCategory">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -89,6 +89,17 @@
             </PersistentString>
             <PersistentString
                value = "&quot;products/category/\(category)&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SceneCoordinator.coordinatorDidFinish(childCoordinator:):SceneCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "childCoordinator.type">
+            </PersistentString>
+            <PersistentString
+               value = "navigationController.viewControllers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -131,10 +142,10 @@
          contextName = "CollectionDataSource.collectionView(_:cellForItemAt:):CollectionDataSource.swift">
          <PersistentStrings>
             <PersistentString
-               value = "item.title">
+               value = "cell.descriptionLabel.text">
             </PersistentString>
             <PersistentString
-               value = "cell.descriptionLabel.text">
+               value = "item.title">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -172,13 +183,13 @@
          contextName = "closure #1 in closure #1 in ProductViewModel.fetchProductsForCategories(categories:completion:):ProductViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "AllProduct">
-            </PersistentString>
-            <PersistentString
                value = "products">
             </PersistentString>
             <PersistentString
                value = "productsByCategory">
+            </PersistentString>
+            <PersistentString
+               value = "AllProduct">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

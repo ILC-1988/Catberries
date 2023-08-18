@@ -8,12 +8,16 @@
 import Foundation
 import UIKit
 
+protocol ProductViewControllerDelegate: class {
+    func didSelectCell(at product: Product)
+}
+
 final class ProductViewModel: NSObject {
 
     let collectionDataSource = CollectionDataSource()
     private let apiClient = APIClient()
     var dataClosure: (([String: [Product]], [String: [Product]], Bool) -> Void)?
-    var didSelectCell: ((_ indexPath: IndexPath) -> Void)?
+    weak var delegate: ProductViewControllerDelegate?
 
     func attach() {
         apiClient.fetchProductsFromAPI { [weak self] productsByCategory in
@@ -21,9 +25,5 @@ final class ProductViewModel: NSObject {
                  self?.dataClosure?(productsByCategory, [:], false)
             }
         }
-    }
-
-    func didSelectCell(at indexPath: IndexPath) {
-        didSelectCell?(indexPath)
     }
 }

@@ -12,8 +12,7 @@ class TabCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var tabBarController: UITabBarController
-
-    var type: CoordinatorType { .product }
+    var type: CoordinatorType { .tab }
 
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -43,14 +42,15 @@ class TabCoordinator: Coordinator {
 
     private func getTabController(_ page: TabBarPage) -> UINavigationController {
         let navController = UINavigationController()
-        navController.setNavigationBarHidden(false, animated: false)
-        navController.tabBarItem = UITabBarItem.init(title: nil,
+        navController.setNavigationBarHidden(false, animated: true)
+        navController.tabBarItem = UITabBarItem.init(title: page.pageTitleValue(),
                            image: page.pageImageNumber(),
                            tag: page.pageOrderNumber())
 
         switch page {
         case .product:
             let firstViewController = ProductViewController()
+            firstViewController.viewModel.delegate = self
             navController.pushViewController(firstViewController, animated: true)
         case .cart:
             let secondViewController = CartViewController()
@@ -79,5 +79,17 @@ class TabCoordinator: Coordinator {
     func setSelectedIndex(_ index: Int) {
         guard let page = TabBarPage.init(index: index) else { return }
         tabBarController.selectedIndex = page.pageOrderNumber()
+    }
+}
+
+extension TabCoordinator: ProductViewControllerDelegate {
+    func didSelectCell(at product: Product) {
+        showProductDescriptionViewController(product: product)
+    }
+
+    func showProductDescriptionViewController(product: Product) {
+        let productDescriptionVC: ProductDescriptionViewController = .init()
+        productDescriptionVC.product = product
+        navigationController.pushViewController(productDescriptionVC, animated: true)
     }
 }

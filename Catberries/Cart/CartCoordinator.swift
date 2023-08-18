@@ -8,13 +8,4 @@
 import UIKit
 
 class CartCoordinator: SceneCoordinator {
-
-    let viewModel: CartViewModel
-
-    init(navigationController: UINavigationController, viewModel: CartViewModel) {
-        self.viewModel = viewModel
-
-        super.init(navigationController: navigationController)
-    }
-
 }
