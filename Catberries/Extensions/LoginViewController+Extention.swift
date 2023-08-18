@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: UIAlert
 extension LoginViewController {
     func showNewUser(_ user: String) {
      let errorAlert = UIAlertController(

@@ -30,7 +30,7 @@ class ProductDescriptionCoordinator: ProductDescriptionProtocol {
     }
 
     func showProductDescriptionViewController() {
-        //let ProductDescriptionVC: ProductDescriptionViewController = .init()
-        //navigationController.pushViewController(ProductDescriptionVC, animated: true)
+        let ProductDescriptionVC: ProductDescriptionViewController = .init()
+        navigationController.pushViewController(ProductDescriptionVC, animated: true)
     }
 }

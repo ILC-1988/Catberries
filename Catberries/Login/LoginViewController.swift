@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+ class LoginViewController: UIViewController {
 
     var didSendEventClosure: ((LoginViewController.Event) -> Void)?
     lazy var loginButton = setupLoginButton("Sing In")
@@ -135,7 +135,7 @@ class LoginViewController: UIViewController {
                                  preferredStyle: .alert)
         inputAlert.addAction(
             UIAlertAction(title: "Cancel",
-                   style: .cancel ))
+                          style: .cancel ))
         let okAction = UIAlertAction(
             title: "OK",
             style: .default ) { [weak self] _ in
