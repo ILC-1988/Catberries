@@ -54,18 +54,18 @@ enum TabBarPage {
         case .cart:
             return UIImage(systemName: "cart") ?? UIImage()
         case .settings:
-            return UIImage(systemName: "gearshape") ?? UIImage()
+            return UIImage(systemName: "person") ?? UIImage()
         }
     }
 
     func pageTitleValue() -> String {
         switch self {
         case .product:
-            return "Product"
+            return "Products"
         case .cart:
             return "Cart"
         case .settings:
-            return "Settings"
+            return UserSessionManager.shared.getCurrentUser()?.name ?? "User"
         }
     }
 }

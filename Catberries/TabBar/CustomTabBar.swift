@@ -11,9 +11,7 @@ final class CustomTabBar: UITabBar {
     private var tabBarWidth: CGFloat { self.bounds.width }
     private var tabBarHeight: CGFloat { self.bounds.height }
     private var centerWidth: CGFloat { self.bounds.width / 2 }
-    private let circleRadius: CGFloat = 27
     private var shapeLayer: CALayer?
-    private var circleLayer: CALayer?
 
     private func shapePath() -> CGPath {
         let path = UIBezierPath()
@@ -25,29 +23,13 @@ final class CustomTabBar: UITabBar {
         return path.cgPath
     }
 
-    private func circlePath() -> CGPath {
-        let path = UIBezierPath()
-        path.addArc(withCenter: CGPoint(x: centerWidth, y: 12),
-                    radius: circleRadius,
-                    startAngle: 180 * .pi / 180,
-                    endAngle: 0 * 180 / .pi,
-                    clockwise: true)
-        return path.cgPath
-    }
-
     private func drawTabBar() {
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shapePath()
-        shapeLayer.strokeColor = UIColor.purple.cgColor
+        shapeLayer.strokeColor = #colorLiteral(red: 0.6830508832, green: 0.6700330661, blue: 0.507898741, alpha: 1)
         shapeLayer.fillColor = UIColor.systemGray6.cgColor
         shapeLayer.lineWidth = 2.0
-
-        let circleLayer = CAShapeLayer()
-        circleLayer.path = circlePath()
-        circleLayer.strokeColor = UIColor.systemMint.cgColor
-        circleLayer.fillColor = UIColor.systemGray6.cgColor
-        circleLayer.lineWidth = 2.0
 
         if let oldShapeLayer = self.shapeLayer {
             self.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
@@ -55,15 +37,8 @@ final class CustomTabBar: UITabBar {
             self.layer.insertSublayer(shapeLayer, at: 0)
         }
 
-        if let oldCircleLayer = self.circleLayer {
-            self.layer.replaceSublayer(oldCircleLayer, with: circleLayer)
-        } else {
-            self.layer.insertSublayer(circleLayer, at: 1)
-        }
-
-        self.tintColor = .purple
+        self.tintColor = #colorLiteral(red: 0.5761333348, green: 0.2789922424, blue: 0.3314428648, alpha: 1)
         self.shapeLayer = shapeLayer
-        self.circleLayer = circleLayer
     }
 
     override func draw(_ rect: CGRect) {

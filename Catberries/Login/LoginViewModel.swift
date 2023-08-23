@@ -7,6 +7,13 @@
 
 import UIKit
 
+class User {
+    let name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
 class LoginViewModel {
 
     var username: String = ""
@@ -14,25 +21,17 @@ class LoginViewModel {
     var userDictionary: [String: String] = [:]
 
     func saveCredentials() {
-        UserManager.saveCredentials(userDictionary)
+        UserSessionManager.shared.saveCredentials(userDictionary)
     }
 
     func loadCredentials() {
-        if let userDictionary = UserManager.loadCredentials() {
+        if let userDictionary = UserSessionManager.shared.loadCredentials() {
             self.userDictionary = userDictionary
         }
     }
 
     func logout() {
-        UserManager.clearCredentials()
-    }
-
-    func loadFromUserDefaults() {
-        userDictionary = UserManager.loadFromUserDefaults(username)
-    }
-
-    func saveInUserDefaults() {
-        UserManager.saveInUserDefaults(to: userDictionary, username)
+        UserSessionManager.shared.clearCredentials()
     }
 
     func userSingIn(login: String, password: String) -> Bool {

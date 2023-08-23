@@ -41,4 +41,9 @@ struct Product: Codable {
     let brand, category: String
     let thumbnail: String
     let images: [String]
+
+    static func ==(lhs: Product, rhs: Product) -> Bool {
+            return lhs.id == rhs.id
+        }
+
 }

@@ -13,6 +13,7 @@ import UIKit
     lazy var loginButton = setupLoginButton("Sing In")
     lazy var createButton = setupLoginButton("Sing up")
     lazy var imageView = setupImage()
+     lazy var logoLabel =  setupLogoLabel()
     let viewModel = LoginViewModel()
 
     override func viewDidLoad() {
@@ -36,8 +37,10 @@ import UIKit
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         createButton.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        logoLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+
             loginButton.bottomAnchor.constraint(equalTo: createButton.topAnchor, constant: -16),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
@@ -48,21 +51,26 @@ import UIKit
             createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
             createButton.heightAnchor.constraint(equalToConstant: 32),
 
+            logoLabel.bottomAnchor.constraint(equalTo: imageView.topAnchor, constant: -24),
+            logoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            logoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 200),
             imageView.heightAnchor.constraint(equalToConstant: 200)
-        ])
+           ])
     }
 
     private func setupLoginButton(_ name: String) -> UIButton {
         let button = UIButton()
         button.setTitle(name, for: .normal)
-        button.backgroundColor = .systemPurple
+        button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 16
         button.titleLabel?.font = UIFont(name: "Marker Felt", size: 24)
-        button.setTitleColor(.darkGray, for: .normal)
+        let coller = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        button.setTitleColor( coller, for: .normal)
         view.addSubview(button)
         return button
     }
@@ -72,6 +80,16 @@ import UIKit
         view.addSubview(imageView)
         return imageView
     }
+
+     private func setupLogoLabel() -> UILabel {
+         let logoLabel = UILabel()
+         logoLabel.text = "Welcome to Catberries"
+         logoLabel.textAlignment = .center
+         logoLabel.textColor = #colorLiteral(red: 0.7758546472, green: 0.6073476271, blue: 0.731810549, alpha: 1)
+         logoLabel.font = UIFont(name: "Marker Felt", size: 36)
+         view.addSubview(logoLabel)
+         return logoLabel
+     }
 
     @objc
     private func singIn(_ sender: Any) {
@@ -89,9 +107,12 @@ import UIKit
                    let password = textFieldsArray[1].text {
                     let userSingIn = self?.viewModel.userSingIn(login: login, password: password)
                     if userSingIn == true {
+                        let user = User(name: login)
+                        UserSessionManager.shared.setCurrentUser(user: user)
                         self?.didSendEventClosure?(.login)
                         self?.showInputUser(login)
                     } else {
+                        UserSessionManager.shared.clearCurrentUser()
                         self?.showError(login)
                     }
                 }

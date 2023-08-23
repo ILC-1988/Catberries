@@ -28,6 +28,7 @@ extension ProductViewController {
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: "HeaderViewIdentifier")
 
+       collectionView.backgroundColor = .systemGray6
         view.addSubview(collectionView)
         return collectionView
     }
@@ -48,7 +49,7 @@ extension ProductViewController {
     }
 
     func setupUI() {
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = #colorLiteral(red: 0.8123916293, green: 0.6769403526, blue: 0.8276493033, alpha: 1)
         setConstraints()
     }
 

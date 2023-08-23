@@ -80,7 +80,9 @@ extension CollectionDataSource: UICollectionViewDataSource {
           cell.descriptionLabel.text = item.title
           cell.brandLabel.text = item.brand
           cell.priceLabel.text = item.price.format()
-          cell.loadImage(from: item.thumbnail)
+          if let iconUrl = URL(string: item.thumbnail) {
+              cell.imageView.setImage(iconUrl)
+          }
 
           return cell
       }

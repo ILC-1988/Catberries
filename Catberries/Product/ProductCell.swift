@@ -16,7 +16,7 @@ final class ProductCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .systemBackground
+        self.backgroundColor = .systemGray6
 
         descriptionLabel.textAlignment = .left
         descriptionLabel.font = UIFont(name: "Kefa Regular", size: 12)
@@ -33,7 +33,7 @@ final class ProductCell: UICollectionViewCell {
             brandLabel.font = boldFont
         }
 
-        imageView.layer.borderColor = UIColor.purple.cgColor
+        imageView.layer.borderColor =  #colorLiteral(red: 0.6830508832, green: 0.6700330661, blue: 0.507898741, alpha: 1).cgColor
         imageView.layer.borderWidth = 0.5
 
         addSubview(imageView)
@@ -81,17 +81,4 @@ final class ProductCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func loadImage(from urlString: String) {
-        if let url = URL(string: urlString) {
-            AF.request(url).responseData { response in
-                if let data = response.data, let image = UIImage(data: data) {
-                     DispatchQueue.main.async {
-                         self.imageView.image = image
-                     }
-                }
-            }
-        }
-    }
-
 }

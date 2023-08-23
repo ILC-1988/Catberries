@@ -12,6 +12,7 @@ class TabCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var tabBarController: UITabBarController
+    let cartViewModel = CartViewModel()
     var type: CoordinatorType { .tab }
 
     required init(_ navigationController: UINavigationController) {
@@ -53,8 +54,9 @@ class TabCoordinator: Coordinator {
             firstViewController.viewModel.delegate = self
             navController.pushViewController(firstViewController, animated: true)
         case .cart:
-            let secondViewController = CartViewController()
-            navController.pushViewController(secondViewController, animated: true)
+            let cartCoordinator = CartCoordinator(navigationController: navController)
+            cartViewModel.cartTabDelegate = self
+            cartCoordinator.start(viewModel: cartViewModel)
         case .settings:
             let thirdViewController = SettingsViewController()
             thirdViewController.didSendEventClosure = { [weak self] event in
@@ -88,8 +90,33 @@ extension TabCoordinator: ProductViewControllerDelegate {
     }
 
     func showProductDescriptionViewController(product: Product) {
-        let productDescriptionVC: ProductDescriptionViewController = .init()
+        guard let navigationController = tabBarController.viewControllers?[0] as? UINavigationController else { return }
+        let productDescriptionVC = ProductDescriptionViewController()
         productDescriptionVC.product = product
+        productDescriptionVC.addToCartClosure = { [weak self] event in
+            switch event {
+            case .addCart:
+                self?.addElementToCart(product: product)
+            }
+        }
         navigationController.pushViewController(productDescriptionVC, animated: true)
+    }
+
+    func addElementToCart(product: Product) {
+        cartViewModel.addItemToCart(product: product)
+        updateCartItemsCount()
+    }
+
+    func updateCartItemCount() {
+        if let mainTabBarController = tabBarController as? TabBarController {
+            mainTabBarController.updateCartItemsCount(count: cartViewModel.cartItems.count)
+        }
+    }
+
+}
+
+extension TabCoordinator: CartTabDelegate {
+    func updateCartItemsCount() {
+        updateCartItemCount()
     }
 }

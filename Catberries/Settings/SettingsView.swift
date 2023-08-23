@@ -45,6 +45,7 @@ final class SettingsViewController: UIViewController {
     }
 
     @objc private func didTapGoButton(_ sender: Any) {
+        UserSessionManager.shared.clearCurrentUser()
         didSendEventClosure?(.settings)
     }
 }
