@@ -52,6 +52,9 @@ class TabCoordinator: Coordinator {
         case .product:
             let firstViewController = ProductViewController()
             firstViewController.viewModel.delegate = self
+            firstViewController.addToCartClosure = { [weak self] product in
+                self?.addElementToCart(product: product)
+            }
             navController.pushViewController(firstViewController, animated: true)
         case .cart:
             let cartCoordinator = CartCoordinator(navigationController: navController)

@@ -24,6 +24,8 @@ extension ProductViewController {
 
         collectionView.delegate = viewModel
         collectionView.dataSource = viewModel.collectionDataSource
+        viewModel.collectionDataSource.delegate = self
+
         collectionView.register(ProductCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: "HeaderViewIdentifier")
@@ -78,5 +80,12 @@ extension ProductViewController {
                 self?.collectionView.reloadData()
             }
         }
+    }
+}
+
+// MARK: - CollectionDataSourceDelegate
+extension ProductViewController: CollectionDataSourceDelegate {
+    func addToCartButtonTapped(for product: Product) {
+        addToCartClosure?(product)
     }
 }

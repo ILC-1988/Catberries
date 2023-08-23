@@ -7,11 +7,17 @@
 //
 import UIKit
 
+
+protocol CollectionDataSourceDelegate: class {
+    func addToCartButtonTapped(for product: Product)
+}
+
 class CollectionDataSource: NSObject {
 
     var filteredProductsByCategory: [String: [Product]] = [:]
     var productsByCategory: [String: [Product]] = [:]
     var isSearching: Bool = false
+    weak var delegate: CollectionDataSourceDelegate?
 
     func searchProductsByValue(_ searchText: String) -> [String: [Product]] {
         if isSearching {

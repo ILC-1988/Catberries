@@ -83,6 +83,9 @@ extension CollectionDataSource: UICollectionViewDataSource {
           if let iconUrl = URL(string: item.thumbnail) {
               cell.imageView.setImage(iconUrl)
           }
+          cell.addToCartClosure = {
+              self.addToCart(item)
+          }
 
           return cell
       }
@@ -107,4 +110,9 @@ extension CollectionDataSource: UICollectionViewDataSource {
           headerView.titleLabel.text = category
           return headerView
       }
+
+    func addToCart(_ product: Product) {
+        print(product)
+        delegate?.addToCartButtonTapped(for: product)
+    }
 }
