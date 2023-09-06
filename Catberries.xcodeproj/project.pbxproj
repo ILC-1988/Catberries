@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0343810545854213F611D7CD /* Pods_Catberries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256DE03019D6FC83928E3ABF /* Pods_Catberries.framework */; };
 		61100C5F2AA7BDD100039189 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61100C5E2AA7BDD100039189 /* UIViewController+Extension.swift */; };
+		613B68B72AA9484000F3EF9F /* CartViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613B68B62AA9484000F3EF9F /* CartViewModel+Extension.swift */; };
 		614DF7842A95691000EE20E9 /* CartDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614DF7832A95691000EE20E9 /* CartDataManager.swift */; };
 		614DF7862A956FFB00EE20E9 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614DF7852A956FFB00EE20E9 /* CartItemCell.swift */; };
 		614DF7882A959D4800EE20E9 /* CartHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614DF7872A959D4800EE20E9 /* CartHeaderFooterView.swift */; };
@@ -56,6 +57,7 @@
 		1E6F2C321CBFD32FE79DA052 /* Pods-Catberries.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catberries.debug.xcconfig"; path = "Target Support Files/Pods-Catberries/Pods-Catberries.debug.xcconfig"; sourceTree = "<group>"; };
 		256DE03019D6FC83928E3ABF /* Pods_Catberries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catberries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61100C5E2AA7BDD100039189 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		613B68B62AA9484000F3EF9F /* CartViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CartViewModel+Extension.swift"; sourceTree = "<group>"; };
 		614DF7832A95691000EE20E9 /* CartDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDataManager.swift; sourceTree = "<group>"; };
 		614DF7852A956FFB00EE20E9 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		614DF7872A959D4800EE20E9 /* CartHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartHeaderFooterView.swift; sourceTree = "<group>"; };
@@ -151,16 +153,17 @@
 		6164FF2D2A75B2BA00AA770E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				613B68B62AA9484000F3EF9F /* CartViewModel+Extension.swift */,
 				61B938992A81912C00016548 /* CollectionDataSource+Extension.swift */,
 				61EBDDA92A816FB5004DC8A7 /* Int+Extention.swift */,
-				6164FF2E2A75B2CE00AA770E /* ProductViewController+Extension.swift */,
-				61D0D2E32A7A883A001A088F /* ProductViewModel+Extension.swift */,
-				6164FF312A75B69700AA770E /* UIView+Extension.swift */,
-				61100C5E2AA7BDD100039189 /* UIViewController+Extension.swift */,
-				61DE72812A91079B00BBE9E8 /* UIImageView.swift */,
 				61ED11B42A8E9FE30033F587 /* LoginCoordinator+Extention.swift */,
 				61ED11BA2A8EC5720033F587 /* LoginViewController+Extention.swift */,
+				6164FF2E2A75B2CE00AA770E /* ProductViewController+Extension.swift */,
+				61D0D2E32A7A883A001A088F /* ProductViewModel+Extension.swift */,
 				61DEAAFF2A96BF4800A6CBB2 /* UIButton+Extention.swift */,
+				61DE72812A91079B00BBE9E8 /* UIImageView.swift */,
+				6164FF312A75B69700AA770E /* UIView+Extension.swift */,
+				61100C5E2AA7BDD100039189 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				61EDF1832A7722BA00E90F80 /* CartViewController.swift in Sources */,
 				61100C5F2AA7BDD100039189 /* UIViewController+Extension.swift in Sources */,
 				61ED11B92A8EB1C70033F587 /* TabBarPage.swift in Sources */,
+				613B68B72AA9484000F3EF9F /* CartViewModel+Extension.swift in Sources */,
 				61ED11AE2A8E7CD10033F587 /* LoginViewController.swift in Sources */,
 				61DEAB002A96BF4800A6CBB2 /* UIButton+Extention.swift in Sources */,
 				61ED11892A8E23D70033F587 /* CustomTabBar.swift in Sources */,

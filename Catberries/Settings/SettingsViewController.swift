@@ -98,16 +98,6 @@ final class SettingsViewController: UIViewController {
 
         viewCont.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        phoneLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        addressTextField.translatesAutoresizingMaskIntoConstraints = false
-        phoneTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginOffButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.translatesAutoresizingMaskIntoConstraints = false
 
         if edit {
             NSLayoutConstraint.activate(constraintsEdit)
@@ -189,6 +179,7 @@ final class SettingsViewController: UIViewController {
         label.layer.cornerRadius = 4
         label.layer.masksToBounds = true
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func setupTextField(textField: UITextField, name: String, keyboardType: UIKeyboardType ) {
@@ -202,6 +193,7 @@ final class SettingsViewController: UIViewController {
         textField.keyboardType = keyboardType
         textField.delegate = self
         textField.isHidden = true
+        textField.translatesAutoresizingMaskIntoConstraints = false
     }
 
     @objc

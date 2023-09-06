@@ -69,7 +69,6 @@ final class CartViewController: UIViewController {
     private func setConstraints() {
         viewCont.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        buyButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
 

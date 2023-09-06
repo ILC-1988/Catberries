@@ -53,11 +53,12 @@ final class ProductCell: UICollectionViewCell {
         addSubview(priceLabel)
         addSubview(brandLabel)
         addSubview(descriptionLabel)
+
+        setConstraints()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        setConstraints()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = imageView.frame.size.width * 0.05
         imageView.clipsToBounds = true

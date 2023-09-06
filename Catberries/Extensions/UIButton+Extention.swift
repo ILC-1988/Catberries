@@ -16,6 +16,7 @@ extension UIButton {
         button.setTitleColor(coller, for: .normal)
         button.titleLabel?.font = UIFont(name: "Kefa Regular", size: 24)
         button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
 }
