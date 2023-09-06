@@ -46,24 +46,47 @@ extension ProductViewController {
     func makeSearchBar() -> UISearchBar {
         let searchBar = UISearchBar()
         searchBar.delegate = viewModel
+
+        let font = UIFont(name: "Kefa Regular", size: 16)
+        let attributedPlaceholder = NSAttributedString(
+            string: "Search on Catberries",
+            attributes: [NSAttributedString.Key.font: font]
+        )
+
+        searchBar.searchTextField.attributedPlaceholder = attributedPlaceholder
+
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace.width = 16
+        let closeButton = UIBarButtonItem(title: "Close",
+                                           style: .done,
+                                           target: self,
+                                           action: #selector(closeButtonTapped))
+        toolbar.items = [flexibleSpace, closeButton, fixedSpace]
+        searchBar.inputAccessoryView = toolbar
         view.addSubview(searchBar)
         return searchBar
     }
 
-    func setupUI() {
-        view.backgroundColor = #colorLiteral(red: 0.8123916293, green: 0.6769403526, blue: 0.8276493033, alpha: 1)
-        setConstraints()
+    @objc
+    func closeButtonTapped() {
+        searchBar.resignFirstResponder()
     }
 
-    private func setConstraints() {
+    func setupUI() {
+        view.backgroundColor = #colorLiteral(red: 0.8123916293, green: 0.6769403526, blue: 0.8276493033, alpha: 1)
+    }
+
+    func setConstraints() {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchBar.heightAnchor.constraint(equalToConstant: 50),
             collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

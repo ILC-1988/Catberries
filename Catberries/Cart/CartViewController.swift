@@ -13,17 +13,8 @@ final class CartViewController: UIViewController {
     var tableView = UITableView()
     let screenshotImageView = UIImageView()
 
-    lazy var buy: UIButton = {
-        let button = UIButton()
-        button.setTitle("buy", for: .normal)
-        button.backgroundColor = .darkGray
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8.0
-        button.addTarget(self, action: #selector(didTapGoButton(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonReleased), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonReleased), for: .touchUpOutside)
-        return button
-    }()
+    lazy var buyButton = UIButton.setupButton("Enter and oder")
+
     lazy var viewCont = UIView()
 
     init(viewModel: CartViewModel) {
@@ -42,9 +33,14 @@ final class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.isNavigationBarHidden = true
+        buyButton.addTarget(self, action: #selector(didTapGoButton(_:)), for: .touchUpInside)
+        buyButton.addTarget(self, action: #selector(buttonReleased), for: .touchUpInside)
+        buyButton.addTarget(self, action: #selector(buttonReleased), for: .touchUpOutside)
+
         viewModel.fetchCartItems()
         view.backgroundColor = #colorLiteral(red: 0.8123916293, green: 0.6769403526, blue: 0.8276493033, alpha: 1)
-        
+
         viewCont.backgroundColor = .systemGray6
         view.addSubview(viewCont)
 
@@ -57,8 +53,7 @@ final class CartViewController: UIViewController {
         tableView.register(CartItemCell.self, forCellReuseIdentifier: "CartItemCell")
         tableView.register(CartHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.reloadData()
-        viewCont.addSubview(buy)
-        setConstraints()
+        viewCont.addSubview(buyButton)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -66,14 +61,19 @@ final class CartViewController: UIViewController {
         updateCart()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setConstraints()
+    }
+
     private func setConstraints() {
         viewCont.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        buy.translatesAutoresizingMaskIntoConstraints = false
+        buyButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
 
-            viewCont.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            viewCont.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             viewCont.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             viewCont.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             viewCont.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -82,34 +82,41 @@ final class CartViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: viewCont.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: viewCont.trailingAnchor),
 
-            buy.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
-            buy.widthAnchor.constraint(equalToConstant: 200),
-            buy.heightAnchor.constraint(equalToConstant: 50),
-            buy.centerXAnchor.constraint(equalTo: viewCont.centerXAnchor),
-            buy.bottomAnchor.constraint(equalTo: viewCont.bottomAnchor, constant: -8)
+            buyButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+            buyButton.leadingAnchor.constraint(equalTo: viewCont.leadingAnchor, constant: 8),
+            buyButton.trailingAnchor.constraint(equalTo: viewCont.trailingAnchor, constant: -8),
+            buyButton.heightAnchor.constraint(equalToConstant: 32),
+            buyButton.centerXAnchor.constraint(equalTo: viewCont.centerXAnchor),
+            buyButton.bottomAnchor.constraint(equalTo: viewCont.bottomAnchor, constant: -8)
         ])
     }
 
     func updateCart() {
+        updateTotalAmount()
         tableView.reloadData()
-        buy.isEnabled = !viewModel.cartItems.isEmpty
+        buyButton.isEnabled = !viewModel.cartItems.isEmpty
+    }
+
+    func updateTotalAmount() {
+        let total = viewModel.calculateTotal().format()
+        buyButton.setTitle("Enter and oder: \(total) $", for: .normal)
     }
 
     @objc
     private func didTapGoButton(_ sender: Any) {
         UIView.animate(withDuration: 0.4) {
-            self.buy.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+            self.buyButton.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         }
         takeScreenshotAndAnimate()
         viewModel.clearCart()
         tableView.reloadData()
-        buy.isEnabled = false
+        buyButton.isEnabled = false
     }
 
     @objc
     func buttonReleased() {
         UIView.animate(withDuration: 0.4) {
-            self.buy.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+            self.buyButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         }
     }
 

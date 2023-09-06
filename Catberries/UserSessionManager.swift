@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class UserSessionManager {
     static let shared = UserSessionManager()
@@ -13,6 +14,7 @@ final class UserSessionManager {
     private var currentUser: User?
     private let userDefaults = UserDefaults.standard
     private let cartKey = "Cart"
+    private let info = "Info"
     private let favoritesKey = "Favorites"
     private let credentialsKey = "credentials"
     private let loginssKey = "logins"
@@ -59,6 +61,22 @@ final class UserSessionManager {
             return []
         }
     }
+
+    func setUserInfo(key: String, to user: User) {
+        let userDefaults = UserDefaults(suiteName: key)
+        let userInfo = try? JSONEncoder().encode(user)
+        userDefaults?.set(userInfo, forKey: info)
+    }
+
+    func getUserInfo(key: String) -> User? {
+        let userDefaults = UserDefaults(suiteName: key)
+        if let userData = userDefaults?.value(forKey: info) as? Data {
+            if let userInfo = try? JSONDecoder().decode(User.self, from: userData) {
+                return userInfo
+            }
+        }
+        return nil
+    }
 }
 
 struct LoginData: Codable {
@@ -68,4 +86,11 @@ struct LoginData: Codable {
 struct UserData: Codable {
     let product: Product
     var quantity: Int
+}
+
+struct User: Codable {
+    let name: String
+    let email: String?
+    let address: String?
+    let phone: String?
 }

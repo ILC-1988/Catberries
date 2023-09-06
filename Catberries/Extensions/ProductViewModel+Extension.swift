@@ -18,12 +18,10 @@ extension ProductViewModel: UICollectionViewDelegateFlowLayout {
         if let cell = collectionView.cellForItem(at: indexPath) as? ProductCell {
             cellTapped(cell.descriptionLabel, indexPath: indexPath)
         }
-        print("Selected item at index: \(indexPath.item)")
-        
-        
+
         let categories: [String]
         let category: String
-        
+
         categories = Array(self.collectionDataSource.productsByCategory.keys)
         if !categories.isEmpty {
             category = categories[indexPath.section]
@@ -31,9 +29,6 @@ extension ProductViewModel: UICollectionViewDelegateFlowLayout {
                 delegate?.didSelectCell(at: product)
             }
         }
-
-        
-        
     }
 
     func cellTapped(_ sender: UILabel, indexPath: IndexPath) {
@@ -96,10 +91,15 @@ extension ProductViewModel: UISearchBarDelegate {
         }
     }
 
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        return true
+    }
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        searchBar.setShowsCancelButton(false, animated: true)
         self.dataClosure?(collectionDataSource.productsByCategory, [:], false)
     }
-
 }

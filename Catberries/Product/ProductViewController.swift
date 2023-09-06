@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProductViewController: UIViewController {
+final class ProductViewController: UIViewController, UISearchBarDelegate {
 
     lazy var searchBar = makeSearchBar()
     lazy var collectionView = makeCollectionView()
@@ -19,6 +19,16 @@ final class ProductViewController: UIViewController {
         setupUI()
         initViewModel()
         viewModel.attach()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setConstraints()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     deinit {

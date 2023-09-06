@@ -13,7 +13,7 @@ class CartHeaderFooterView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-        label.font = UIFont(name: "Marker Felt Thin", size: 32)
+        label.font = UIFont(name: "Kefa Regular", size: 24)
         return label
     }()
 

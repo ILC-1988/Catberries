@@ -49,6 +49,11 @@ class CartViewModel: NSObject {
     func fetchCartItems() {
         cartItems = CartDataManager.shared.getCartItems()
     }
+
+    func calculateTotal() -> Int {
+        let total = cartItems.reduce(0) { $0 + $1.product.price }
+        return total
+    }
 }
 
 extension CartViewModel: UITableViewDataSource {

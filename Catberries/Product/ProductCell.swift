@@ -13,6 +13,7 @@ protocol ProductCellDelegate: class {
 
 final class ProductCell: UICollectionViewCell {
 
+    let screenshotImageView = UIImageView()
     let descriptionLabel = UILabel()
     let priceLabel = UILabel()
     let brandLabel = UILabel()
@@ -94,6 +95,29 @@ final class ProductCell: UICollectionViewCell {
 
     @objc func addToCartButtonTapped() {
         self.addToCartClosure?()
+        takeScreenshotAndAnimate()
+    }
+
+    func takeScreenshotAndAnimate() {
+        guard let screenshot = takeScreenshot() else { return }
+
+        screenshotImageView.image = screenshot
+        screenshotImageView.frame = CGRect(x: 0, y: 0, width: screenshot.size.width, height: screenshot.size.height)
+        addSubview(screenshotImageView)
+
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+            self.screenshotImageView.frame.origin.x = self.frame.width * 2
+        }, completion: { (_) in
+            self.screenshotImageView.removeFromSuperview()
+        })
+    }
+
+    func takeScreenshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenshot
     }
 
     required init?(coder aDecoder: NSCoder) {

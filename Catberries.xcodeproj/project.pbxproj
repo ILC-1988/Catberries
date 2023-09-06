@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0343810545854213F611D7CD /* Pods_Catberries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256DE03019D6FC83928E3ABF /* Pods_Catberries.framework */; };
+		61100C5F2AA7BDD100039189 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61100C5E2AA7BDD100039189 /* UIViewController+Extension.swift */; };
 		614DF7842A95691000EE20E9 /* CartDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614DF7832A95691000EE20E9 /* CartDataManager.swift */; };
 		614DF7862A956FFB00EE20E9 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614DF7852A956FFB00EE20E9 /* CartItemCell.swift */; };
 		614DF7882A959D4800EE20E9 /* CartHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614DF7872A959D4800EE20E9 /* CartHeaderFooterView.swift */; };
@@ -27,6 +28,7 @@
 		61CA852F2A81304E00B0E064 /* ProductHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA852E2A81304E00B0E064 /* ProductHeader.swift */; };
 		61D0D2E42A7A883A001A088F /* ProductViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D0D2E32A7A883A001A088F /* ProductViewModel+Extension.swift */; };
 		61DE72822A91079B00BBE9E8 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE72812A91079B00BBE9E8 /* UIImageView.swift */; };
+		61DEAB002A96BF4800A6CBB2 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DEAAFF2A96BF4800A6CBB2 /* UIButton+Extention.swift */; };
 		61E13F272A8F491100FDD613 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E13F262A8F491100FDD613 /* LoginViewModel.swift */; };
 		61E7A8C32A7C369E00B2C01D /* CollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E7A8C22A7C369E00B2C01D /* CollectionDataSource.swift */; };
 		61EBDDAA2A816FB5004DC8A7 /* Int+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBDDA92A816FB5004DC8A7 /* Int+Extention.swift */; };
@@ -53,6 +55,7 @@
 /* Begin PBXFileReference section */
 		1E6F2C321CBFD32FE79DA052 /* Pods-Catberries.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catberries.debug.xcconfig"; path = "Target Support Files/Pods-Catberries/Pods-Catberries.debug.xcconfig"; sourceTree = "<group>"; };
 		256DE03019D6FC83928E3ABF /* Pods_Catberries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catberries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61100C5E2AA7BDD100039189 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		614DF7832A95691000EE20E9 /* CartDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDataManager.swift; sourceTree = "<group>"; };
 		614DF7852A956FFB00EE20E9 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		614DF7872A959D4800EE20E9 /* CartHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartHeaderFooterView.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		61CA852E2A81304E00B0E064 /* ProductHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeader.swift; sourceTree = "<group>"; };
 		61D0D2E32A7A883A001A088F /* ProductViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductViewModel+Extension.swift"; sourceTree = "<group>"; };
 		61DE72812A91079B00BBE9E8 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		61DEAAFF2A96BF4800A6CBB2 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		61E13F262A8F491100FDD613 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		61E7A8C22A7C369E00B2C01D /* CollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDataSource.swift; sourceTree = "<group>"; };
 		61EBDDA92A816FB5004DC8A7 /* Int+Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Extention.swift"; path = "Catberries/Extensions/Int+Extention.swift"; sourceTree = SOURCE_ROOT; };
@@ -152,9 +156,11 @@
 				6164FF2E2A75B2CE00AA770E /* ProductViewController+Extension.swift */,
 				61D0D2E32A7A883A001A088F /* ProductViewModel+Extension.swift */,
 				6164FF312A75B69700AA770E /* UIView+Extension.swift */,
+				61100C5E2AA7BDD100039189 /* UIViewController+Extension.swift */,
 				61DE72812A91079B00BBE9E8 /* UIImageView.swift */,
 				61ED11B42A8E9FE30033F587 /* LoginCoordinator+Extention.swift */,
 				61ED11BA2A8EC5720033F587 /* LoginViewController+Extention.swift */,
+				61DEAAFF2A96BF4800A6CBB2 /* UIButton+Extention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -422,8 +428,10 @@
 				61CA852F2A81304E00B0E064 /* ProductHeader.swift in Sources */,
 				61ED11BB2A8EC5720033F587 /* LoginViewController+Extention.swift in Sources */,
 				61EDF1832A7722BA00E90F80 /* CartViewController.swift in Sources */,
+				61100C5F2AA7BDD100039189 /* UIViewController+Extension.swift in Sources */,
 				61ED11B92A8EB1C70033F587 /* TabBarPage.swift in Sources */,
 				61ED11AE2A8E7CD10033F587 /* LoginViewController.swift in Sources */,
+				61DEAB002A96BF4800A6CBB2 /* UIButton+Extention.swift in Sources */,
 				61ED11892A8E23D70033F587 /* CustomTabBar.swift in Sources */,
 				6186C0E82A69B6930049D959 /* ProductViewController.swift in Sources */,
 				61EDF17F2A77224900E90F80 /* CartCoordinator.swift in Sources */,

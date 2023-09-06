@@ -20,40 +20,38 @@ class ProductDescriptionViewController: UIViewController {
         return setupPageControl()
     }()
     lazy var viewCont = UIView()
-
-    lazy var addCart: UIButton = {
-        let button = UIButton()
-        button.setTitle("add cart", for: .normal)
-        button.backgroundColor = .darkGray
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8.0
-        button.addTarget(self, action: #selector(didTapGoButton(_:)), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonReleased), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonReleased), for: .touchUpOutside)
-        return button
-    }()
+    lazy var addCartButton = UIButton.setupButton("Add cart")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
+        addCartButton.addTarget(self, action: #selector(didTapGoButton(_:)), for: .touchUpInside)
+        addCartButton.addTarget(self, action: #selector(buttonReleased), for: .touchUpInside)
+        addCartButton.addTarget(self, action: #selector(buttonReleased), for: .touchUpOutside)
+        viewCont.addSubview(addCartButton)
         view.backgroundColor = #colorLiteral(red: 0.8123916293, green: 0.6769403526, blue: 0.8276493033, alpha: 1)
         viewCont.backgroundColor = .systemGray6
         view.addSubview(viewCont)
         title = product?.title
         imageNames = product?.images ?? []
         addImagesToScrollView()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setConstraints()
-}
+    }
 
-private func setConstraints() {
-    viewCont.translatesAutoresizingMaskIntoConstraints = false
+    private func setConstraints() {
+        viewCont.translatesAutoresizingMaskIntoConstraints = false
 
-    NSLayoutConstraint.activate([
-        viewCont.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
-        viewCont.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        viewCont.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        viewCont.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-    ])
-}
+        NSLayoutConstraint.activate([
+            viewCont.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            viewCont.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewCont.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewCont.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
 
     deinit {
         print("ProductDescriptionViewController deinit")
@@ -62,7 +60,7 @@ private func setConstraints() {
     @objc
     private func didTapGoButton(_ sender: Any) {
         UIView.animate(withDuration: 0.4) {
-                self.addCart.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+                self.addCartButton.backgroundColor =  #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             }
         addToCartClosure?(.addCart)
     }
@@ -70,7 +68,7 @@ private func setConstraints() {
     @objc
     func buttonReleased() {
         UIView.animate(withDuration: 0.4) {
-                    self.addCart.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                    self.addCartButton.backgroundColor = #colorLiteral(red: 0.8123916293, green: 0.6769403526, blue: 0.8276493033, alpha: 1)
                 }
     }
 
@@ -129,12 +127,15 @@ private func setConstraints() {
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             pageControl.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 20).isActive = true
 
-            viewCont.addSubview(addCart)
-            addCart.translatesAutoresizingMaskIntoConstraints = false
-            addCart.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            addCart.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 20).isActive = true
-            addCart.widthAnchor.constraint(equalToConstant: 200).isActive = true
-            addCart.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            addCartButton.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                addCartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+                addCartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+                addCartButton.heightAnchor.constraint(equalToConstant: 32),
+                addCartButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                addCartButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+            ])
 
             updateCurrentPage(page: 0)
         }

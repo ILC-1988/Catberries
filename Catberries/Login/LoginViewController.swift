@@ -7,13 +7,13 @@
 
 import UIKit
 
- class LoginViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     var didSendEventClosure: ((LoginViewController.Event) -> Void)?
     lazy var loginButton = setupLoginButton("Sing In")
     lazy var createButton = setupLoginButton("Sing up")
     lazy var imageView = setupImage()
-     lazy var logoLabel =  setupLogoLabel()
+    lazy var logoLabel =  setupLogoLabel()
     let viewModel = LoginViewModel()
 
     override func viewDidLoad() {
@@ -22,8 +22,8 @@ import UIKit
         viewModel.loadCredentials()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setConstraints()
     }
 
@@ -59,7 +59,7 @@ import UIKit
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 200),
             imageView.heightAnchor.constraint(equalToConstant: 200)
-           ])
+        ])
     }
 
     private func setupLoginButton(_ name: String) -> UIButton {
@@ -67,7 +67,7 @@ import UIKit
         button.setTitle(name, for: .normal)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 16
+        button.layer.cornerRadius = 8
         button.titleLabel?.font = UIFont(name: "Marker Felt", size: 24)
         let coller = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         button.setTitleColor( coller, for: .normal)
@@ -81,15 +81,15 @@ import UIKit
         return imageView
     }
 
-     private func setupLogoLabel() -> UILabel {
-         let logoLabel = UILabel()
-         logoLabel.text = "Welcome to Catberries"
-         logoLabel.textAlignment = .center
-         logoLabel.textColor = #colorLiteral(red: 0.7758546472, green: 0.6073476271, blue: 0.731810549, alpha: 1)
-         logoLabel.font = UIFont(name: "Marker Felt", size: 36)
-         view.addSubview(logoLabel)
-         return logoLabel
-     }
+    private func setupLogoLabel() -> UILabel {
+        let logoLabel = UILabel()
+        logoLabel.text = "Welcome to Catberries"
+        logoLabel.textAlignment = .center
+        logoLabel.textColor = #colorLiteral(red: 0.7758546472, green: 0.6073476271, blue: 0.731810549, alpha: 1)
+        logoLabel.font = UIFont(name: "Marker Felt", size: 36)
+        view.addSubview(logoLabel)
+        return logoLabel
+    }
 
     @objc
     private func singIn(_ sender: Any) {
@@ -107,10 +107,14 @@ import UIKit
                    let password = textFieldsArray[1].text {
                     let userSingIn = self?.viewModel.userSingIn(login: login, password: password)
                     if userSingIn == true {
-                        let user = User(name: login)
-                        UserSessionManager.shared.setCurrentUser(user: user)
-                        self?.didSendEventClosure?(.login)
-                        self?.showInputUser(login)
+                        if let user = UserSessionManager.shared.getUserInfo(key: login) {
+                            UserSessionManager.shared.setCurrentUser(user: user)
+                            self?.didSendEventClosure?(.login)
+                            self?.showInputUser(login)
+                        } else {
+                            UserSessionManager.shared.clearCurrentUser()
+                            self?.showError(login)
+                        }
                     } else {
                         UserSessionManager.shared.clearCurrentUser()
                         self?.showError(login)
@@ -152,8 +156,8 @@ import UIKit
     @objc
     private func singUp(_ sender: Any) {
         let inputAlert = UIAlertController(title: "Sing up",
-                                 message: "Create new account",
-                                 preferredStyle: .alert)
+                                           message: "Create new account",
+                                           preferredStyle: .alert)
         inputAlert.addAction(
             UIAlertAction(title: "Cancel",
                           style: .cancel ))
@@ -163,6 +167,11 @@ import UIKit
                 if let textFieldsArray = inputAlert.textFields,
                    let login = textFieldsArray[0].text,
                    let password = textFieldsArray[1].text {
+                    let user = User(name: login,
+                                    email: "\(login)@example.com",
+                                    address: "123 Minsk St",
+                                    phone: nil)
+                    UserSessionManager.shared.setUserInfo(key: login, to: user)
                     self?.showNewUser(login)
                     self?.viewModel.userDictionary[login] = password
                     self?.viewModel.saveCredentials()
@@ -194,13 +203,11 @@ import UIKit
                     let loginText = inputAlert.textFields![0].text
                     let passwordText = inputAlert.textFields![1].text
                     let passwordAgainText = inputAlert.textFields![2].text
-
                     if let loginText = loginText,
                        !loginText.isEmpty,
                        let passwordText = passwordText,
                        passwordText == passwordAgainText,
                        !passwordText.isEmpty {
-
                         okAction.isEnabled = true
                     } else {
                         okAction.isEnabled = false
