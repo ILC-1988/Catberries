@@ -94,6 +94,7 @@ final class CartViewController: UIViewController {
         self.buyButton.isHidden = viewModel.cartItems.isEmpty
         updateTotalAmount()
         tableView.reloadData()
+        viewCont.layoutIfNeeded()
     }
 
     func updateTotalAmount() {
