@@ -198,6 +198,19 @@ final class SettingsViewController: UIViewController {
 
     @objc
     private func didTapGoButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Attention",
+                                                message: "Are you sure you want to exit?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes",
+                                      style: .destructive) { _ in
+            self.goExit()
+        }
+        alertController.addAction(yesAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func goExit() {
         if let user = UserSessionManager.shared.getCurrentUser() {
             UserSessionManager.shared.setUserInfo(key: user.name, to: user)
         }
@@ -207,7 +220,7 @@ final class SettingsViewController: UIViewController {
 
     @objc
     private func didTapGoEdit(_ sender: Any) {
-        if edit {
+          if edit {
             edit = false
             editButton.setTitle("Edit", for: .normal)
             let login = nameTextField.text ?? ""
