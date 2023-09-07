@@ -68,14 +68,14 @@ class TabCoordinator: Coordinator {
                     self?.finish()
                 }
             }
-
             navController.pushViewController(thirdViewController, animated: true)
         }
-
         return navController
     }
 
-    func currentPage() -> TabBarPage? { TabBarPage.init(index: tabBarController.selectedIndex) }
+    func currentPage() -> TabBarPage? {
+        TabBarPage.init(index: tabBarController.selectedIndex)
+    }
 
     func selectPage(_ page: TabBarPage) {
         tabBarController.selectedIndex = page.pageOrderNumber()

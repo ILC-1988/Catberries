@@ -21,16 +21,6 @@ class CartCoordinator {
     func start(viewModel: CartViewModel) {
         let cartViewModel = viewModel
         let cartViewController = CartViewController(viewModel: cartViewModel)
-        cartViewController.viewModel.cartDelegate = self
         navigationController.pushViewController(cartViewController, animated: true)
-    }
-}
-
-// MARK: CartDelegate
-extension CartCoordinator: CartDelegate {
-    func didUpdateCart() {
-         if let cartViewController = navigationController.viewControllers.first as? CartViewController {
-            cartViewController.updateCart()
-        }
     }
 }

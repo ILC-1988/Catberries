@@ -32,7 +32,7 @@ final class CartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.cartDelegate = self
         self.navigationController?.isNavigationBarHidden = true
         buyButton.addTarget(self, action: #selector(didTapGoButton(_:)), for: .touchUpInside)
         buyButton.addTarget(self, action: #selector(buttonReleased), for: .touchUpInside)
