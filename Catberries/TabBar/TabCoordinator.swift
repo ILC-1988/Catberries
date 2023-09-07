@@ -59,6 +59,7 @@ class TabCoordinator: Coordinator {
         case .cart:
             let cartCoordinator = CartCoordinator(navigationController: navController)
             cartViewModel.cartTabDelegate = self
+            cartViewModel.cartItems = UserSessionManager.shared.getData(key: "Cart")
             cartCoordinator.start(viewModel: cartViewModel)
         case .settings:
             let thirdViewController = SettingsViewController()
