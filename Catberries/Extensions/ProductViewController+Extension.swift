@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+// MARK: - ProductViewController
 extension ProductViewController {
 
    func makeCollectionView() -> UICollectionView {

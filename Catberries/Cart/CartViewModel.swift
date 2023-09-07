@@ -51,7 +51,7 @@ class CartViewModel: NSObject {
     }
 
     func calculateTotal() -> Int {
-        let total = cartItems.reduce(0) { $0 + $1.product.price }
+        let total = cartItems.reduce(0) { $0 + $1.product.price * $1.quantity }
         return total
     }
 }

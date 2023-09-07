@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: Keyboard
 extension UIViewController {
     func addHideKeyboard() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))

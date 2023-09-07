@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: UITableViewDataSource
 extension CartViewModel: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cartItems.count
@@ -23,6 +24,7 @@ extension CartViewModel: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension CartViewModel: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -60,6 +62,7 @@ extension CartViewModel: UITableViewDelegate {
         }
 }
 
+// MARK: CartItemCellDelegate
 extension CartViewModel: CartItemCellDelegate {
     func didTapButton(in cell: CartItemCell, add: Bool) {
         guard let tableView = cell.superview as? UITableView else { return }

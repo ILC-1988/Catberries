@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: setupButton
 extension UIButton {
     static func setupButton(_ name: String) -> UIButton {
         let button = UIButton()
