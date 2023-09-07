@@ -99,7 +99,7 @@ final class CartViewController: UIViewController {
 
     func updateTotalAmount() {
         let total = viewModel.calculateTotal().format()
-        buyButton.setTitle("Enter and oder: \(total) $", for: .normal)
+        buyButton.setTitle("Enter and order: \(total) $", for: .normal)
     }
 
     @objc
