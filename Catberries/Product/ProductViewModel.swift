@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-protocol ProductViewControllerDelegate: class {
-    func didSelectCell(at product: Product)
-}
-
 final class ProductViewModel: NSObject {
 
     let collectionDataSource = CollectionDataSource()

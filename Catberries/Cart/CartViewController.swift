@@ -91,9 +91,9 @@ final class CartViewController: UIViewController {
     }
 
     func updateCart() {
+        self.buyButton.isHidden = viewModel.cartItems.isEmpty
         updateTotalAmount()
         tableView.reloadData()
-        buyButton.isEnabled = !viewModel.cartItems.isEmpty
     }
 
     func updateTotalAmount() {
@@ -103,19 +103,15 @@ final class CartViewController: UIViewController {
 
     @objc
     private func didTapGoButton(_ sender: Any) {
-        UIView.animate(withDuration: 0.4) {
-            self.buyButton.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-        }
         takeScreenshotAndAnimate()
         viewModel.clearCart()
         tableView.reloadData()
-        buyButton.isEnabled = false
     }
 
     @objc
     func buttonReleased() {
         UIView.animate(withDuration: 0.4) {
-            self.buyButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+            self.buyButton.isHidden = true
         }
     }
 

@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol CartItemCellDelegate: AnyObject {
-    func didTapButton(in cell: CartItemCell, add: Bool)
-}
-
 class CartItemCell: UITableViewCell {
     static let reuseIdentifier = "CartItemCell"
     weak var delegate: CartItemCellDelegate?
@@ -47,6 +43,7 @@ class CartItemCell: UITableViewCell {
     private let totalLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -98,6 +95,7 @@ class CartItemCell: UITableViewCell {
             priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             quantityLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 4),
             quantityLabel.leadingAnchor.constraint(equalTo: customImageView.trailingAnchor, constant: 16),
+            quantityLabel.widthAnchor.constraint(equalToConstant: 80),
             totalLabel.topAnchor.constraint(equalTo: quantityLabel.topAnchor),
             totalLabel.leadingAnchor.constraint(equalTo: quantityLabel.trailingAnchor, constant: 8),
             totalLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),

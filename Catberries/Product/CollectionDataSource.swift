@@ -7,11 +7,6 @@
 //
 import UIKit
 
-
-protocol CollectionDataSourceDelegate: class {
-    func addToCartButtonTapped(for product: Product)
-}
-
 class CollectionDataSource: NSObject {
 
     var filteredProductsByCategory: [String: [Product]] = [:]
