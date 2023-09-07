@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol LoginCoordinatorProtocol: Coordinator {
-    func showLoginViewController()
-}
-
 class LoginCoordinator: LoginCoordinatorProtocol {
     weak var finishDelegate: CoordinatorFinishDelegate?
     var navigationController: UINavigationController

@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol ProductCellDelegate: class {
-    func addToCart(for product: Product)
-}
-
 final class ProductCell: UICollectionViewCell {
 
     let screenshotImageView = UIImageView()

@@ -7,14 +7,6 @@
 
 import UIKit
 
-protocol CartDelegate: AnyObject {
-    func didUpdateCart()
-}
-
-protocol CartTabDelegate: AnyObject {
-    func updateCartItemsCount()
-}
-
 class CartViewModel: NSObject {
     var cartItems: [UserData] = []
     weak var cartDelegate: CartDelegate?
